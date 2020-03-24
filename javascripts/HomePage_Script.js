@@ -35,10 +35,15 @@ function setVariables()
     btnWidth = (unit*470);
     btnHeight = (unit*120);
     btnX = (frameWidth/2-(btnWidth/2));
-    btn1Y = logoY+logoHeight+(unit*60);
+    //Four Buttons
+    /*btn1Y = logoY+logoHeight+(unit*60);
     btn2Y = btn1Y+(btnHeight*4/3);
     btn3Y = btn2Y+(btnHeight*4/3);
-    btn4Y = btn3Y+(btnHeight*4/3);
+    btn4Y = btn3Y+(btnHeight*4/3);*/
+    //Three Buttons
+    btn2Y = (minFrameHeight/2-(btnHeight/2));
+    btn1Y = btn2Y-btnHeight-(unit*60);
+    btn3Y = btn2Y+btnHeight+(unit*60);
     btnEnlarge = (unit*10);
     /*
     //exitConfirm
