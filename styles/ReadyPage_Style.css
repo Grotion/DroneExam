@@ -1,0 +1,24 @@
+/*ReadyPage_Style.css*/
+#instructionTitle
+{
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
+}
+#instructionText
+{
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
+}

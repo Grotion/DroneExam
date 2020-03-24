@@ -1,0 +1,49 @@
+/*TestPage_Style.css*/
+#questionNum
+{
+    font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    word-wrap: break-word;
+    word-break: normal;
+    text-align: center;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    
+    
+}
+#questionText
+{
+    font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
+    font-size: 35px;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: normal;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    
+    
+}
+.optionDiv
+{	
+    display: table-cell; 
+    vertical-align: middle;    
+    text-align: left;
+}
+.optionText
+{
+    font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
+    font-size: 20px;
+    font-weight: bold;
+	word-wrap: break-word;
+    word-break: break-all;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
