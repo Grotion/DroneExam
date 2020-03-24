@@ -841,7 +841,7 @@ function resetUsedArr()
             break;
     }
 }
-function ifUsed(target)
+function ifQuestionUsed(target)
 {
     var found = false;
     switch(testType)  
@@ -920,7 +920,7 @@ function getExamData(jsonUrl)
                     while(count<10)
                     {
                         n = Math.floor((Math.random() * data.exam.basic.regulations.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             basic_question[count] = data.exam.basic.regulations[n].question;
                             basic_optionA[count] = data.exam.basic.regulations[n].optionA;
@@ -936,7 +936,7 @@ function getExamData(jsonUrl)
                     while(count<15)
                     {
                         n = Math.floor((Math.random() * data.exam.basic.flightTheory.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             basic_question[count] = data.exam.basic.flightTheory[n].question;
                             basic_optionA[count] = data.exam.basic.flightTheory[n].optionA;
@@ -952,7 +952,7 @@ function getExamData(jsonUrl)
                     while(count<18)
                     {
                         n = Math.floor((Math.random() * data.exam.basic.weather.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             basic_question[count] = data.exam.basic.weather[n].question;
                             basic_optionA[count] = data.exam.basic.weather[n].optionA;
@@ -968,7 +968,7 @@ function getExamData(jsonUrl)
                     while(count<20)
                     {
                         n = Math.floor((Math.random() * data.exam.basic.emergencies.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             basic_question[count] = data.exam.basic.emergencies[n].question;
                             basic_optionA[count] = data.exam.basic.emergencies[n].optionA;
@@ -1032,7 +1032,7 @@ function getExamData(jsonUrl)
                     while(count<14)
                     {
                         n = Math.floor((Math.random() * data.exam.pro.regulations.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             pro_question[count] = data.exam.pro.regulations[n].question;
                             pro_optionA[count] = data.exam.pro.regulations[n].optionA;
@@ -1048,7 +1048,7 @@ function getExamData(jsonUrl)
                     while(count<28)
                     {
                         n = Math.floor((Math.random() * data.exam.pro.flightTheory.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             pro_question[count] = data.exam.pro.flightTheory[n].question;
                             pro_optionA[count] = data.exam.pro.flightTheory[n].optionA;
@@ -1064,7 +1064,7 @@ function getExamData(jsonUrl)
                     while(count<34)
                     {
                         n = Math.floor((Math.random() * data.exam.pro.weather.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             pro_question[count] = data.exam.pro.weather[n].question;
                             pro_optionA[count] = data.exam.pro.weather[n].optionA;
@@ -1080,7 +1080,7 @@ function getExamData(jsonUrl)
                     while(count<40)
                     {
                         n = Math.floor((Math.random() * data.exam.pro.emergencies.length));
-                        if(!ifUsed(n))
+                        if(!ifQuestionUsed(n))
                         {
                             pro_question[count] = data.exam.pro.emergencies[n].question;
                             pro_optionA[count] = data.exam.pro.emergencies[n].optionA;
