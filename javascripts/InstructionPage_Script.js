@@ -1,3 +1,7 @@
+/**
+ * @author Grotion <grotion0720@gmail.com>
+ * © 2020 Grotion All Rights Reserved
+ */
 var i,deviation, space, instructionText;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var backWidth, backHeight, backX, backY;
@@ -6,7 +10,7 @@ function setVariables()
     //variables
     deviation = 0.99;
     space = "&nbsp;&nbsp;&nbsp;"
-    instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-03-24";
+    instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-03-24<br><footer>&copy; Copyright 2020 GROTION</footer>";
     //general
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
@@ -81,7 +85,7 @@ function setElements()
     //InstructionText
     createPElement("instruction", "instructionText", instructionText);
     //Back
-    createInputImgElement("frame", "back", "resources/images/InstructionPage_Back.png", "back");
+    createInputImgElement("frame", "back", "/resources/images/InstructionPage_Back.png", "back");
    	setElementStyle("back", backWidth, backHeight, backX, backY, 1);
     //ButtonEvent
    	setBtnEvent("back", true);

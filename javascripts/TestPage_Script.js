@@ -1,3 +1,7 @@
+/**
+ * @author Grotion <grotion0720@gmail.com>
+ * © 2020 Grotion All Rights Reserved
+ */
 var i,deviation, space, testType, score, isDone, isDoneStr;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var backWidth, backHeight, backX, backY;
@@ -175,7 +179,7 @@ function setElements()
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Back
-    createInputImgElement("frame", "back", "resources/images/TestPage_TestBackBtn.png", "back");
+    createInputImgElement("frame", "back", "/resources/images/TestPage_TestBackBtn.png", "back");
     setElementStyle("back", backWidth, backHeight, backX, backY, 1);
     //QuestionNum
     createPElement("frame", "questionNum", "");
@@ -184,7 +188,7 @@ function setElements()
     createDivElement("frame", "questionBox");
     setElementStyle("questionBox", questionWidth, questionHeight, questionX, questionY, 1);
     //QuestionBackground
-    createImgElement("questionBox", "questionBackground", "resources/images/TestPage_QuestionBackground.png", "questionBackground");
+    createImgElement("questionBox", "questionBackground", "/resources/images/TestPage_QuestionBackground.png", "questionBackground");
     setElementStyle("questionBackground", questionWidth, questionHeight, 0, 0, 2);
     //QuestionText
     createPElement("questionBox", "questionText", "");
@@ -194,7 +198,7 @@ function setElements()
     setElementStyle("optionA", optionWidth, optionHeight, optionX, optionA_Y, 1);
     document.getElementById("optionA").setAttribute("class", "optionDiv");
     //OptionA_Background
-    createImgElement("optionA", "optionA_Background", "resources/images/TestPage_Option_Original.png", "optionA_Background");
+    createImgElement("optionA", "optionA_Background", "/resources/images/TestPage_Option_Original.png", "optionA_Background");
     setElementStyle("optionA_Background", optionWidth, optionHeight, 0, 0, 2);
     //OptionA_Text
     createPElement("optionA", "optionA_Text", "A."+space+"");
@@ -204,7 +208,7 @@ function setElements()
     createDivElement("frame", "optionB");
     setElementStyle("optionB", optionWidth, optionHeight, optionX, optionB_Y, 1);
     //OptionB_Background
-    createImgElement("optionB", "optionB_Background", "resources/images/TestPage_Option_Original.png", "optionB_Background");
+    createImgElement("optionB", "optionB_Background", "/resources/images/TestPage_Option_Original.png", "optionB_Background");
     setElementStyle("optionB_Background", optionWidth, optionHeight, 0, 0, 2);
     //OptionB_Text
     createPElement("optionB", "optionB_Text", "B."+space+"");
@@ -214,7 +218,7 @@ function setElements()
     createDivElement("frame", "optionC");
     setElementStyle("optionC", optionWidth, optionHeight, optionX, optionC_Y, 1);
     //OptionC_Background
-    createImgElement("optionC", "optionC_Background", "resources/images/TestPage_Option_Original.png", "optionC_Background");
+    createImgElement("optionC", "optionC_Background", "/resources/images/TestPage_Option_Original.png", "optionC_Background");
     setElementStyle("optionC_Background", optionWidth, optionHeight, 0, 0, 2);
     //OptionC_Text
     createPElement("optionC", "optionC_Text", "C."+space+"");
@@ -224,32 +228,32 @@ function setElements()
     createDivElement("frame", "optionD");
     setElementStyle("optionD", optionWidth, optionHeight, optionX, optionD_Y, 1);
     //OptionD_Background
-    createImgElement("optionD", "optionD_Background", "resources/images/TestPage_Option_Original.png", "optionD_Background");
+    createImgElement("optionD", "optionD_Background", "/resources/images/TestPage_Option_Original.png", "optionD_Background");
     setElementStyle("optionD_Background", optionWidth, optionHeight, 0, 0, 2);
     //OptionD_Text
     createPElement("optionD", "optionD_Text", "D."+space+"");
     setElementStyle("optionD_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
     document.getElementById("optionD_Text").setAttribute("class", "optionText");
     //Pre
-    createInputImgElement("frame", "pre", "resources/images/TestPage_PreviousBtn_Unavailable.png", "pre");
+    createInputImgElement("frame", "pre", "/resources/images/TestPage_PreviousBtn_Unavailable.png", "pre");
     setElementStyle("pre", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, preX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
     //Next
-    createInputImgElement("frame", "next", "resources/images/TestPage_NextBtn_Unavailable.png", "next");
+    createInputImgElement("frame", "next", "/resources/images/TestPage_NextBtn_Unavailable.png", "next");
     setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
     //ExitComfirm
     createDivElement("frame", "exitConfirm");
     setElementStyle("exitConfirm", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmX, exitConfirmY, 2);
     //ExitComfirmBackground
-    createImgElement("exitConfirm", "exitConfirmBackground", "resources/images/TestPage_ExitConfirm.png", "exitConfirmBackground");
+    createImgElement("exitConfirm", "exitConfirmBackground", "/resources/images/TestPage_ExitConfirm.png", "exitConfirmBackground");
     setElementStyle("exitConfirmBackground", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, 0, 0, 3);
     //ExitComfirmYes
-    createImgElement("exitConfirm", "exitConfirmYes", "resources/images/TestPage_ExitConfirmYes.png", "exitConfirmYes");
+    createImgElement("exitConfirm", "exitConfirmYes", "/resources/images/TestPage_ExitConfirmYes.png", "exitConfirmYes");
     setElementStyle("exitConfirmYes", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmYesX, exitConfirmYesNoY, 4);
     //ExitComfirmNo
-    createImgElement("exitConfirm", "exitConfirmNo", "resources/images/TestPage_ExitConfirmNo.png", "exitConfirmNo");
+    createImgElement("exitConfirm", "exitConfirmNo", "/resources/images/TestPage_ExitConfirmNo.png", "exitConfirmNo");
     setElementStyle("exitConfirmNo", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmNoX, exitConfirmYesNoY, 4);
     //ExitComfirmCancel
-    createImgElement("exitConfirm", "exitConfirmCancel", "resources/images/TestPage_ExitConfirmCancel.png", "exitConfirmCancel");
+    createImgElement("exitConfirm", "exitConfirmCancel", "/resources/images/TestPage_ExitConfirmCancel.png", "exitConfirmCancel");
     setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
     //ButtonEvent
     setExitConfirmVisible(false);
@@ -333,7 +337,7 @@ function btnMouseOver(event)
     switch(id)
     {
         case "back":
-            setIcon("back", "resources/images/TestPage_TestBackBtn_MouseOn.png");
+            setIcon("back", "/resources/images/TestPage_TestBackBtn_MouseOn.png");
             break;
         case "pre":
             break;
@@ -368,7 +372,7 @@ function btnMouseOut(event)
     switch(id)
     {
         case "back":
-            setIcon("back", "resources/images/TestPage_TestBackBtn.png");
+            setIcon("back", "/resources/images/TestPage_TestBackBtn.png");
             break;
         case "pre":
             break;
@@ -449,10 +453,10 @@ function setExitConfirmVisible(isVisible)
 }
 function resetOptionBackground()
 {
-    setIcon("optionA_Background", "resources/images/TestPage_Option_Original.png");
-    setIcon("optionB_Background", "resources/images/TestPage_Option_Original.png");
-    setIcon("optionC_Background", "resources/images/TestPage_Option_Original.png");
-    setIcon("optionD_Background", "resources/images/TestPage_Option_Original.png");
+    setIcon("optionA_Background", "/resources/images/TestPage_Option_Original.png");
+    setIcon("optionB_Background", "/resources/images/TestPage_Option_Original.png");
+    setIcon("optionC_Background", "/resources/images/TestPage_Option_Original.png");
+    setIcon("optionD_Background", "/resources/images/TestPage_Option_Original.png");
 }
 function doneQuestion(selectedOption)
 {
@@ -463,7 +467,7 @@ function doneQuestion(selectedOption)
     nextAvailable = true;
     setBtnEvent("next", nextAvailable);
     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
-    setIcon("next", "resources/images/TestPage_NextBtn.png");
+    setIcon("next", "/resources/images/TestPage_NextBtn.png");
 }
 function judgeQuestion(selectedOption)
 {
@@ -481,12 +485,12 @@ function judgeQuestion(selectedOption)
             if(selectedOption == basic_correct[doneQuestionCount-1])
             {
                 score += 5;
-                setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Correct.png");
+                setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Correct.png");
             }
             else
             {
-                setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Wrong.png");
-                setIcon("option"+basic_correct[doneQuestionCount-1]+"_Background", "resources/images/TestPage_Option_Correct.png");
+                setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Wrong.png");
+                setIcon("option"+basic_correct[doneQuestionCount-1]+"_Background", "/resources/images/TestPage_Option_Correct.png");
             }
             break;
         }
@@ -502,12 +506,12 @@ function judgeQuestion(selectedOption)
             if(selectedOption == pro_correct[doneQuestionCount-1])
             {
                 score += 2.5;
-                setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Correct.png");
+                setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Correct.png");
             }
              else
             {
-                setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Wrong.png");
-                setIcon("option"+pro_correct[doneQuestionCount-1]+"_Background", "resources/images/TestPage_Option_Correct.png");
+                setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Wrong.png");
+                setIcon("option"+pro_correct[doneQuestionCount-1]+"_Background", "/resources/images/TestPage_Option_Correct.png");
             }
             break;
         }
@@ -520,12 +524,12 @@ function judgeDoneQuestion(selectedOption, correctOption)
 {
     if(selectedOption == correctOption)
     {
-        setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Correct.png");
+        setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Correct.png");
     }
     else
     {
-        setIcon("option"+selectedOption+"_Background", "resources/images/TestPage_Option_Wrong.png");
-        setIcon("option"+correctOption+"_Background", "resources/images/TestPage_Option_Correct.png");
+        setIcon("option"+selectedOption+"_Background", "/resources/images/TestPage_Option_Wrong.png");
+        setIcon("option"+correctOption+"_Background", "/resources/images/TestPage_Option_Correct.png");
     }
 }
 function nextQuestion()
@@ -535,7 +539,7 @@ function nextQuestion()
     preAvailable = true;
     setBtnEvent("pre", preAvailable);
     setElementStyle("pre", arrowWidth, arrowHeight, preX, arrowY, 1);
-    setIcon("pre", "resources/images/TestPage_PreviousBtn.png");
+    setIcon("pre", "/resources/images/TestPage_PreviousBtn.png");
     if(currentQuestionCount>doneQuestionCount)
     {
         doneQuestionCount++;
@@ -563,7 +567,7 @@ function nextQuestion()
                     nextAvailable = false;
                     setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn_Unavailable.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn_Unavailable.png");
                     document.getElementById("questionNum").innerHTML = doneQuestionCount+"/20";
                 }
                 break;
@@ -589,7 +593,7 @@ function nextQuestion()
                     nextAvailable = false;
                     setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn_Unavailable.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn_Unavailable.png");
                     document.getElementById("questionNum").innerHTML = doneQuestionCount+"/40";
                 }
                 break;
@@ -620,7 +624,7 @@ function nextQuestion()
                     nextAvailable = true;
                     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn.png");
                     judgeDoneQuestion(localStorage.getItem("grotion_droneTest_question"+currentQuestionCount+"_selected"), localStorage.getItem("grotion_droneTest_question"+currentQuestionCount+"_correct"));
                 }
                 else
@@ -630,7 +634,7 @@ function nextQuestion()
                     nextAvailable = false;
                     setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn_Unavailable.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn_Unavailable.png");
                 }
                 break;
             }
@@ -650,7 +654,7 @@ function nextQuestion()
                     nextAvailable = true;
                     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn.png");
                     judgeDoneQuestion(localStorage.getItem("grotion_droneTest_question"+currentQuestionCount+"_selected"), localStorage.getItem("grotion_droneTest_question"+currentQuestionCount+"_correct"));
                 }
                 else
@@ -660,7 +664,7 @@ function nextQuestion()
                     nextAvailable = false;
                     setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn_Unavailable.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn_Unavailable.png");
                 }
                 break;
             }
@@ -680,14 +684,14 @@ function preQuestion()
         preAvailable = false;
         setBtnEvent("pre", preAvailable);
         setElementStyle("pre", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, preX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
-        setIcon("pre", "resources/images/TestPage_PreviousBtn_Unavailable.png");
+        setIcon("pre", "/resources/images/TestPage_PreviousBtn_Unavailable.png");
     }
     optionAvailable = false;
     setOptionAvailable(optionAvailable);
     nextAvailable = true;
     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
     setBtnEvent("next", nextAvailable);
-    setIcon("next", "resources/images/TestPage_NextBtn.png");
+    setIcon("next", "/resources/images/TestPage_NextBtn.png");
     if(testType=="basic")
         document.getElementById("questionNum").innerHTML = currentQuestionCount+"/20";
     else
@@ -780,7 +784,7 @@ function getExamData(jsonUrl)
                     setOptionAvailable(optionAvailable);
                     nextAvailable = true;
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn.png");
                     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
                     judgeDoneQuestion(localStorage.getItem("grotion_droneTest_question1_selected"), localStorage.getItem("grotion_droneTest_question1_correct"));
                 }
@@ -892,7 +896,7 @@ function getExamData(jsonUrl)
                     setOptionAvailable(optionAvailable);
                     nextAvailable = true;
                     setBtnEvent("next", nextAvailable);
-                    setIcon("next", "resources/images/TestPage_NextBtn.png");
+                    setIcon("next", "/resources/images/TestPage_NextBtn.png");
                     setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
                     judgeDoneQuestion(localStorage.getItem("grotion_droneTest_question1_selected"), localStorage.getItem("grotion_droneTest_question1_correct"));
                 }

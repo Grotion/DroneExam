@@ -1,10 +1,14 @@
+/**
+ * @author Grotion <grotion0720@gmail.com>
+ * © 2020 Grotion All Rights Reserved
+ */
 // JavaScript source code
 var i,deviation, testType;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var logoWidth, logoHeight, logoX, logoY;
 var btnWidth, btnHeight, btnX, btn1Y, btn2Y, btn3Y, btn4Y, btnEnlarge;
-var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
-var exitConfirmX, exitConfirmY, exitConfirmYesNoY, exitConfirmYesX, exitConfirmNoX, exitConfirmCancelX, exitConfirmCancelY;
+//var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
+//var exitConfirmX, exitConfirmY, exitConfirmYesNoY, exitConfirmYesX, exitConfirmNoX, exitConfirmCancelX, exitConfirmCancelY;
 function renew()
 {
     setElements();
@@ -36,6 +40,7 @@ function setVariables()
     btn3Y = btn2Y+(btnHeight*4/3);
     btn4Y = btn3Y+(btnHeight*4/3);
     btnEnlarge = (unit*10);
+    /*
     //exitConfirm
     exitConfirmBackgroundWidth = (unit*650);
     exitConfirmBackgroundHeight = (unit*250);
@@ -50,6 +55,7 @@ function setVariables()
     exitConfirmNoX = (exitConfirmBackgroundWidth/2)+(exitConfirmBackgroundWidth-(2*exitConfirmYesNoWidth))/6;
     exitConfirmCancelX = exitConfirmBackgroundWidth-(exitConfirmCancelRadis*2)-(unit*12);
     exitConfirmCancelY = (unit*5);
+    */
 }
 function setElementStyle(id, w, h, left, top, zIndex)
 {
@@ -107,17 +113,18 @@ function setElements()
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Logo
-    createInputImgElement("frame", "logo", "resources/images/HomePage_Title.png", "logo");
+    createInputImgElement("frame", "logo", "/resources/images/HomePage_Title.png", "logo");
     setElementStyle("logo", logoWidth, logoHeight, logoX, logoY, 1);
     //Basic
-    createInputImgElement("frame", "basic", "resources/images/HomePage_BasicBtn.png", "basic");
+    createInputImgElement("frame", "basic", "/resources/images/HomePage_BasicBtn.png", "basic");
     setElementStyle("basic", btnWidth, btnHeight, btnX, btn1Y, 1);
     //Pro
-    createInputImgElement("frame", "pro", "resources/images/HomePage_ProBtn.png", "pro");
+    createInputImgElement("frame", "pro", "/resources/images/HomePage_ProBtn.png", "pro");
     setElementStyle("pro", btnWidth, btnHeight, btnX, btn2Y, 1);
     //Instruction
-    createInputImgElement("frame", "instruction", "resources/images/HomePage_InstructionBtn.png", "instruction");
+    createInputImgElement("frame", "instruction", "/resources/images/HomePage_InstructionBtn.png", "instruction");
     setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
+    /*
     //Exit
     createInputImgElement("frame", "exit", "resources/images/HomePage_ExitBtn.png", "exit");
     setElementStyle("exit", btnWidth, btnHeight, btnX, btn4Y, 1);
@@ -136,8 +143,13 @@ function setElements()
     //ExitConfirmCancel
     createImgElement("exitConfirm", "exitConfirmCancel", "resources/images/HomePage_ExitConfirmCancel.png", "exitConfirmCancel");
     setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
+    */
     //ButtonEvent
-    setExitConfirmVisible(false);
+    //setExitConfirmVisible(false);
+    setBtnEvent("logo", true);
+    setBtnEvent("basic", true);
+    setBtnEvent("pro", true);
+    setBtnEvent("instruction", true);
 }
 function setBtnEvent(id, available)
 {
@@ -177,30 +189,26 @@ function btnMouseClick(event)
         case "basic":
             localStorage.setItem("grotion_droneTest_testType", "basic");
             document.location.href = "ReadyPage.html";
-            //window.location.replace("ReadyPage.html");
             break;
         case "pro":
             localStorage.setItem("grotion_droneTest_testType", "pro");
             document.location.href = "ReadyPage.html";
-            //window.location.replace("ReadyPage.html");
             break;
         case "instruction":
             document.location.href = "InstructionPage.html";
             break;
-        case "exit":
+        /*case "exit":
             setExitConfirmVisible(true);
             break;
         case "exitConfirmYes":
             localStorage.clear();
-            //location.reload();
-            document.window.close();
             break;
         case "exitConfirmNo":
             setExitConfirmVisible(false);
             break;
         case "exitConfirmCancel":
             setExitConfirmVisible(false);
-            break;
+            break;*/
         default:
             console.log("Mouse Out Button("+id+") NOT Found!");
             break;
@@ -224,7 +232,7 @@ function btnMouseOver(event)
         case "instruction":
             setElementStyle("instruction", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn3Y-(btnEnlarge/2), 1);
             break;
-        case "exit":
+        /*case "exit":
             setElementStyle("exit", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn4Y-(btnEnlarge/2), 1);
             break;
         case "exitConfirmYes":
@@ -235,7 +243,7 @@ function btnMouseOver(event)
             break;
         case "exitConfirmCancel":
             setElementStyle("exitConfirmCancel", (exitConfirmCancelRadis*2)+exitConfirmEnlarge, (exitConfirmCancelRadis*2)+exitConfirmEnlarge, exitConfirmCancelX-(exitConfirmEnlarge/2), exitConfirmCancelY-(exitConfirmEnlarge/2), 4);
-            break;
+            break;*/
         default:
             console.log("Mouse Out Button("+id+") NOT Found!");
             break;
@@ -259,7 +267,7 @@ function btnMouseOut(event)
         case "instruction":
             setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
             break;
-        case "exit":
+        /*case "exit":
             setElementStyle("exit", btnWidth, btnHeight, btnX, btn4Y, 1);
             break;
         case "exitConfirmYes":
@@ -270,7 +278,7 @@ function btnMouseOut(event)
             break;
         case "exitConfirmCancel":
             setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
-            break;
+            break;*/
         default:
             console.log("Mouse On Button("+id+") NOT Found!");
             break;
@@ -308,10 +316,8 @@ function start()
     localStorage.clear();
     console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
     console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
-
     setVariables();
     setElements();
-    //i = setInterval("renew()", 1); 
     localStorage.setItem("grotion_droneTest_testType", testType);
 }
 window.addEventListener("load",start,false);

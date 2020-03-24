@@ -1,3 +1,7 @@
+/**
+ * @author Grotion <grotion0720@gmail.com>
+ * © 2020 Grotion All Rights Reserved
+ */
 var i, deviation, space, score;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var scoreBoxWidth, scoreBoxHeight, scoreBoxX, scoreBoxY;
@@ -116,7 +120,7 @@ function setElements()
         document.getElementById("pass").style.color = "green";
         var numOfPassAni = 1;
         var x = Math.floor((Math.random() * numOfPassAni));
-        var GIFtoSet = "resources/ResultAnimation/pass"+x+".gif";
+        var GIFtoSet = "/resources/ResultAnimation/pass"+x+".gif";
         setIcon("ani", GIFtoSet);
         setElementStyle("ani", aniWidth, aniHeight, aniX, aniY, 1);
     }
@@ -126,15 +130,15 @@ function setElements()
         document.getElementById("pass").style.color = "red";
         var numOfFailAni = 1;
         var x = Math.floor((Math.random() * numOfFailAni));
-        var GIFtoSet = "resources/ResultAnimation/fail"+x+".gif";
+        var GIFtoSet = "/resources/ResultAnimation/fail"+x+".gif";
         setIcon("ani", GIFtoSet);
         setElementStyle("ani", aniWidth, aniHeight, aniX, aniY, 1);
     }
     //Review
-    createInputImgElement("frame", "review", "resources/images/ScorePage_ReviewBtn.png", "pre");
+    createInputImgElement("frame", "review", "/resources/images/ScorePage_ReviewBtn.png", "pre");
     setElementStyle("review", btnWidth, btnHeight, btnX, btn1Y, 1);
     //Home
-    createInputImgElement("frame", "home", "resources/images/ScorePage_HomeBtn.png", "next");
+    createInputImgElement("frame", "home", "/resources/images/ScorePage_HomeBtn.png", "next");
     setElementStyle("home", btnWidth, btnHeight, btnX, btn2Y, 1);
     //ButtonEvent
     setBtnEvent("review", true);
