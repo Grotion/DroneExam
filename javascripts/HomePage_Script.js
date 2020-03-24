@@ -193,6 +193,7 @@ function btnMouseClick(event)
         case "exitConfirmYes":
             localStorage.clear();
             //location.reload();
+            document.window.close();
             break;
         case "exitConfirmNo":
             setExitConfirmVisible(false);
