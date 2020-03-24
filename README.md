@@ -1,4 +1,5 @@
- * @author Grotion <grotion0720@gmail.com>
- * © 2020 Grotion All Rights Reserved
-Tawian Drone Exam Simulator
+#Tawian Drone Exam Simulator
+ * @ author Grotion <grotion0720@gmail.com>
+ * &copy;  2020 Grotion All Rights Reserved
+
 Report Anything: grotion0720@gmail.com
