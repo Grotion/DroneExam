@@ -85,7 +85,7 @@ function setElements()
     //InstructionText
     createPElement("instruction", "instructionText", instructionText);
     //Back
-    createInputImgElement("frame", "back", "/resources/images/InstructionPage_Back.png", "back");
+    createInputImgElement("frame", "back", "resources/images/InstructionPage_Back.png", "back");
    	setElementStyle("back", backWidth, backHeight, backX, backY, 1);
     //ButtonEvent
    	setBtnEvent("back", true);

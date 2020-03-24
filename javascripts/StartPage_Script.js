@@ -86,7 +86,7 @@ function setElements()
     {
         animationWidth = frameWidth;
         animationHeight = minFrameHeight;
-        setIcon("ani", "/resources/StartAnimation/start.gif");
+        setIcon("ani", "resources/StartAnimation/start.gif");
         setElementStyle("ani", animationWidth, animationHeight, animationX, animationY, 2);
         pauseTime = 5000;
     }
@@ -94,7 +94,7 @@ function setElements()
     {
         var numOfAni = 1;
         var x = Math.floor((Math.random() * numOfAni));
-        var GIFtoSet = "../resources/StartAnimation/start"+x+".gif"
+        var GIFtoSet = "resources/StartAnimation/start"+x+".gif"
         animationWidth = (unit*600);
         animationHeight = (unit*500);
         setIcon("ani", GIFtoSet);
@@ -104,9 +104,9 @@ function setElements()
     //Skip
     createInputImgElement("frame", "skip", "", "skip");
     if(isSkipVisible)
-        setIcon("skip", "/resources/images/StartPage_SkipWhite.png"); 
+        setIcon("skip", "resources/images/StartPage_SkipWhite.png"); 
     else
-        setIcon("skip", "/resources/images/StartPage_SkipBlack.png");
+        setIcon("skip", "resources/images/StartPage_SkipBlack.png");
     setElementStyle("skip", skipWidth, skipHeight, skipX, skipY, 1);
     //ButtonEvent
     setBtnEvent("skip", !isGroTion);
@@ -160,9 +160,9 @@ function btnMouseOver(event)
         case "skip":
             document.getElementById(id).style.cursor = "context-menu";
             if(isSkipVisible)
-                setIcon("skip", "/resources/images/StartPage_SkipWhite_MouseOn.png");
+                setIcon("skip", "resources/images/StartPage_SkipWhite_MouseOn.png");
             else
-                setIcon("skip", "/resources/images/StartPage_SkipBlack_MouseOn.png");
+                setIcon("skip", "resources/images/StartPage_SkipBlack_MouseOn.png");
             break;
         default:
             console.log("Mouse Out Button("+id+") NOT Found!");
@@ -177,9 +177,9 @@ function btnMouseOut(event)
         case "skip":
             document.getElementById(id).style.cursor = "context-menu";
             if(isSkipVisible)
-                setIcon("skip", "/resources/images/StartPage_SkipWhite.png");
+                setIcon("skip", "resources/images/StartPage_SkipWhite.png");
             else
-                setIcon("skip", "/resources/images/StartPage_SkipBlack.png");
+                setIcon("skip", "resources/images/StartPage_SkipBlack.png");
             break;
         default:
             console.log("Mouse On Button("+id+") NOT Found!");

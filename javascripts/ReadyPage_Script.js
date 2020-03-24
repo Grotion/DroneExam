@@ -112,14 +112,14 @@ function setElements()
     createImgElement("frame", "title", "", "title");
     setElementStyle("title", titleWidth, titleHeight, titleX, titleY, 1);
     if(testType=="basic")
-        setIcon("title", "/resources/images/ReadyPage_BasicTitle.png");
+        setIcon("title", "resources/images/ReadyPage_BasicTitle.png");
     else if(testType=="pro")
-        setIcon("title", "/resources/images/ReadyPage_ProTitle.png");
+        setIcon("title", "resources/images/ReadyPage_ProTitle.png");
     //Instruction
     createDivElement("frame", "instruction");
     setElementStyle("instruction", instructionWidth, instructionHeight, instructionX, instructionY, 1);
     //InstructionBackground
-    createImgElement("instruction", "instructionBackground", "/resources/images/ReadyPage_Instructions.png", "instructionBackground");
+    createImgElement("instruction", "instructionBackground", "resources/images/ReadyPage_Instructions.png", "instructionBackground");
     setElementStyle("instructionBackground", instructionWidth, instructionHeight, 0, 0, 2);
     //InstructionTitle
     createPElement("instruction", "instructionTitle", "測驗說明：");
@@ -132,10 +132,10 @@ function setElements()
     else if(testType=="pro")
     	document.getElementById("instructionText").innerHTML = proInstruction
     //Back
-    createInputImgElement("frame", "back", "/resources/images/ReadyPage_BackBtn.png", "back");
+    createInputImgElement("frame", "back", "resources/images/ReadyPage_BackBtn.png", "back");
    	setElementStyle("back", btnWidth, btnHeight, btn1X, btnY, 1);
     //Start
-    createInputImgElement("frame", "start", "/resources/images/ReadyPage_StartBtn.png", "start");
+    createInputImgElement("frame", "start", "resources/images/ReadyPage_StartBtn.png", "start");
    	setElementStyle("start", btnWidth, btnHeight, btn2X, btnY, 1);
     //ButtonEvent
    	setBtnEvent("back", true);

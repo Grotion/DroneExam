@@ -113,16 +113,16 @@ function setElements()
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Logo
-    createInputImgElement("frame", "logo", "/resources/images/HomePage_Title.png", "logo");
+    createInputImgElement("frame", "logo", "resources/images/HomePage_Title.png", "logo");
     setElementStyle("logo", logoWidth, logoHeight, logoX, logoY, 1);
     //Basic
-    createInputImgElement("frame", "basic", "/resources/images/HomePage_BasicBtn.png", "basic");
+    createInputImgElement("frame", "basic", "resources/images/HomePage_BasicBtn.png", "basic");
     setElementStyle("basic", btnWidth, btnHeight, btnX, btn1Y, 1);
     //Pro
-    createInputImgElement("frame", "pro", "/resources/images/HomePage_ProBtn.png", "pro");
+    createInputImgElement("frame", "pro", "resources/images/HomePage_ProBtn.png", "pro");
     setElementStyle("pro", btnWidth, btnHeight, btnX, btn2Y, 1);
     //Instruction
-    createInputImgElement("frame", "instruction", "/resources/images/HomePage_InstructionBtn.png", "instruction");
+    createInputImgElement("frame", "instruction", "resources/images/HomePage_InstructionBtn.png", "instruction");
     setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
     /*
     //Exit
