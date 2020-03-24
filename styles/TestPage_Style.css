@@ -30,8 +30,6 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 10px;
-    
-    
 }
 .optionDiv
 {	
@@ -42,7 +40,7 @@
 .optionText
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
 	word-wrap: break-word;
     word-break: break-all;
