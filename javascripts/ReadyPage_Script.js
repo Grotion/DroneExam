@@ -2,11 +2,59 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i,deviation, testType, space, basicInstruction, proInstruction;
+var i, deviation, testType, space, basicInstruction, proInstruction;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var titleWidth, titleHeight, titleX, titleY;
 var instructionWidth, instructionHeight, instructionX, instructionY;
 var btnWidth, btnHeight, btn1X, btn2X, btnY, btnEnlarge;
+var backBtnMouseOn, startBtnMouseOn;
+function update()
+{
+    updateVariables();
+    document.getElementById("frame").style.width = frameWidth+"px";
+    document.getElementById("frame").style.minHeight = minFrameHeight+"px";
+    setElementStyle("title", titleWidth, titleHeight, titleX, titleY, 1);
+    setElementStyle("instruction", instructionWidth, instructionHeight, instructionX, instructionY, 1);
+    setElementStyle("instructionBackground", instructionWidth, instructionHeight, 0, 0, 2);
+    setElementStyle("instructionTitle", instructionWidth, instructionTitleHeight, 0, 0, 2);
+    setElementStyle("instructionText", instructionWidth, instructionTextHeight, 0, instructionTitleHeight, 2);
+    if(backBtnMouseOn)
+        setElementStyle("back", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn1X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
+    else
+        setElementStyle("back", btnWidth, btnHeight, btn1X, btnY, 1);
+    if(startBtnMouseOn)
+        setElementStyle("start", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn2X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
+    else
+        setElementStyle("start", btnWidth, btnHeight, btn2X, btnY, 1);
+}
+function updateVariables()
+{
+    //general
+    unit = ((screen.width/1920)+(screen.width%1920));
+    frameWidth = screen.width*deviation;
+    frameHeight = screen.height*deviation;
+    minFrameWidth = (unit*1890);
+    minFrameHeight = (unit*928);
+    //title
+    titleWidth = (unit*700);
+    titleHeight = (unit*150);
+    titleX = (frameWidth/2-(titleWidth/2));
+    titleY = (unit*10);
+    //instructionBackground
+    instructionWidth = frameWidth*3/4;
+    instructionHeight = (unit*400);
+    instructionTitleHeight = (unit*60);//Determine By ReadyPage.css
+    instructionTextHeight = instructionHeight-instructionTitleHeight;
+    instructionX = (frameWidth/2-(instructionWidth/2));
+    instructionY = titleY+titleHeight-(unit*10);
+    //Buttons
+    btnWidth = (unit*470);
+    btnHeight = (unit*120);
+    btn1X = (frameWidth/2)-btnWidth-(unit*30);
+    btn2X = (frameWidth/2)+(unit*30);
+    btnY = minFrameHeight-btnHeight-(unit*50);
+    btnEnlarge = (unit*10);
+}
 function setVariables()
 {
     testType = localStorage.getItem("grotion_droneTest_testType");
@@ -20,6 +68,8 @@ function setVariables()
     space = "&nbsp;&nbsp;&nbsp;"
     basicInstruction = "1. 學科測驗成績最高分為100分，及格標準為80分，測驗考科計4 項如下：<br>"+space+"(1) 民用航空法及相關法規。<br>"+space+"(2) 基礎飛行原理。<br>"+space+"(3) 氣象。<br>"+space+"(4) 緊急處置與飛行決策。<br>"+"2. 普通操作證學科測驗考題分配及測驗時間：共計20題，測驗時間30分鐘<br>"+"3. 題目均為4 選1 之單選題。";
     proInstruction = "1. 學科測驗成績最高分為100分，及格標準為80分，測驗考科計4 項如下：<br>"+space+"(1) 民用航空法及相關法規。<br>"+space+"(2) 基礎飛行原理。<br>"+space+"(3) 氣象。<br>"+space+"(4) 緊急處置與飛行決策。<br>"+"2. 普通操作證學科測驗考題分配及測驗時間：共計40題，測驗時間60分鐘<br>"+"3. 題目均為4 選1 之單選題。";
+    backBtnMouseOn = false;
+    startBtnMouseOn = false;
     //general
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
@@ -105,7 +155,7 @@ function setElements()
 {
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
-    myFrame.style.width = minFrameWidth+"px";
+    myFrame.style.width = frameWidth+"px";
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Title
@@ -190,9 +240,11 @@ function btnMouseOver(event)
     switch(id)
     {
         case "back":
+            backBtnMouseOn = true;
             setElementStyle("back", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn1X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
             break;
         case "start":
+            startBtnMouseOn = true;
             setElementStyle("start", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn2X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
             break;
         default:
@@ -206,9 +258,11 @@ function btnMouseOut(event)
     switch(id)
     {
         case "back":
+            backBtnMouseOn = false;
             setElementStyle("back", btnWidth, btnHeight, btn1X, btnY, 1);
             break;
         case "start":
+            startBtnMouseOn = false;
             setElementStyle("start", btnWidth, btnHeight, btn2X, btnY, 1);
             break;
         default:
@@ -220,6 +274,6 @@ function start()
 {
     setVariables();
     setElements();
-    //i = setInterval("renew()", 1); 
+    i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);

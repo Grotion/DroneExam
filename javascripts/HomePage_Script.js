@@ -7,17 +7,61 @@ var i,deviation, testType;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var logoWidth, logoHeight, logoX, logoY;
 var btnWidth, btnHeight, btnX, btn1Y, btn2Y, btn3Y, btn4Y, btnEnlarge;
+var basicBtnMouseOn, proBtnMouseOn, instructionBtnMouseOn;
 //var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
 //var exitConfirmX, exitConfirmY, exitConfirmYesNoY, exitConfirmYesX, exitConfirmNoX, exitConfirmCancelX, exitConfirmCancelY;
-function renew()
+function update()
 {
-    setElements();
+    updateVariables();
+    document.getElementById("frame").style.width = frameWidth+"px";
+    document.getElementById("frame").style.minHeight = minFrameHeight+"px";
+    setElementStyle("logo", logoWidth, logoHeight, logoX, logoY, 1);
+    if(basicBtnMouseOn)
+        setElementStyle("basic", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn1Y-(btnEnlarge/2), 1);
+    else
+        setElementStyle("basic", btnWidth, btnHeight, btnX, btn1Y, 1);
+    if(proBtnMouseOn)
+        setElementStyle("pro", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn2Y-(btnEnlarge/2), 1);
+    else
+        setElementStyle("pro", btnWidth, btnHeight, btnX, btn2Y, 1);
+    if(instructionBtnMouseOn)
+        setElementStyle("instruction", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn3Y-(btnEnlarge/2), 1);
+    else
+        setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
+}
+function updateVariables()
+{
+    //general
+    unit = ((screen.width/1920)+(screen.width%1920));
+    frameWidth = screen.width*deviation;
+    frameHeight = screen.height*deviation;
+    minFrameWidth = (unit*1890);
+    minFrameHeight = (unit*928);
+    console.log("Update! Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+    console.log("Update! Unit: "+unit+"px");
+    //logo
+    logoWidth = (unit*600);
+    logoHeight = (unit*150);
+    logoX = (frameWidth/2-(logoWidth/2));
+    logoY = (unit*10);
+    //Buttons
+    btnWidth = (unit*470);
+    btnHeight = (unit*120);
+    btnX = (frameWidth/2-(btnWidth/2));
+    //Three Buttons
+    btn2Y = (minFrameHeight/2-(btnHeight/2));
+    btn1Y = btn2Y-btnHeight-(unit*60);
+    btn3Y = btn2Y+btnHeight+(unit*60);
+    btnEnlarge = (unit*10);
 }
 function setVariables()
 {
     //variables
     testType = "unknown";
     deviation = 0.99;
+    basicBtnMouseOn = false;
+    proBtnMouseOn = false;
+    instructionBtnMouseOn = false;
     //general
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
@@ -35,10 +79,15 @@ function setVariables()
     btnWidth = (unit*470);
     btnHeight = (unit*120);
     btnX = (frameWidth/2-(btnWidth/2));
-    btn1Y = logoY+logoHeight+(unit*60);
+    //Four Buttons
+    /*btn1Y = logoY+logoHeight+(unit*60);
     btn2Y = btn1Y+(btnHeight*4/3);
     btn3Y = btn2Y+(btnHeight*4/3);
-    btn4Y = btn3Y+(btnHeight*4/3);
+    btn4Y = btn3Y+(btnHeight*4/3);*/
+    //Three Buttons
+    btn2Y = (minFrameHeight/2-(btnHeight/2));
+    btn1Y = btn2Y-btnHeight-(unit*60);
+    btn3Y = btn2Y+btnHeight+(unit*60);
     btnEnlarge = (unit*10);
     /*
     //exitConfirm
@@ -109,7 +158,7 @@ function setElements()
 {
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
-    myFrame.style.width = minFrameWidth+"px";
+    myFrame.style.width = frameWidth+"px";
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Logo
@@ -224,12 +273,15 @@ function btnMouseOver(event)
             document.getElementById(id).style.cursor = "context-menu";
             break;
         case "basic":
+            basicBtnMouseOn = true;
             setElementStyle("basic", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn1Y-(btnEnlarge/2), 1);
             break;
         case "pro":
+            proBtnMouseOn = true;
             setElementStyle("pro", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn2Y-(btnEnlarge/2), 1);
             break;
         case "instruction":
+            instructionBtnMouseOn = true;
             setElementStyle("instruction", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn3Y-(btnEnlarge/2), 1);
             break;
         /*case "exit":
@@ -259,12 +311,15 @@ function btnMouseOut(event)
             document.getElementById(id).style.cursor = "context-menu";
             break;
         case "basic":
+            basicBtnMouseOn = false;
             setElementStyle("basic", btnWidth, btnHeight, btnX, btn1Y, 1);
             break;
         case "pro":
+            proBtnMouseOn = false;
             setElementStyle("pro", btnWidth, btnHeight, btnX, btn2Y, 1);
             break;
         case "instruction":
+            instructionBtnMouseOn = false;
             setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
             break;
         /*case "exit":
@@ -318,6 +373,7 @@ function start()
     console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
     setVariables();
     setElements();
+    i = setInterval("update()", 1);
     localStorage.setItem("grotion_droneTest_testType", testType);
 }
 window.addEventListener("load",start,false);

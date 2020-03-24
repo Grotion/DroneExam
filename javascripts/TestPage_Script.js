@@ -2,11 +2,12 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i,deviation, space, testType, score, isDone, isDoneStr;
+var i, deviation, space, testType, score, isDone, isDoneStr;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var backWidth, backHeight, backX, backY;
 var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
 var exitConfirmX, exitConfirmY, exitConfirmYesNoY, exitConfirmYesX, exitConfirmNoX, exitConfirmCancelX, exitConfirmCancelY;
+var exitConfirmYesBtnMouseOn, exitConfirmNoBtnMouseOn, exitConfirmCancelBtnMouseOn;
 var questionNumWidth, questionNumHeight, questionNumX, questionNumY;
 var questionWidth, questionTextWidth, questionHeight, questionX, questionY;
 var optionWidth, optionHeight, optionTextWidth, optionTextHeight, optionX, optionA_Y, optionB_Y, optionC_Y, optionD_Y, optionAvailable;
@@ -16,6 +17,109 @@ var doneQuestionCount, currentQuestionCount;
 var basic_question, basic_optionA, basic_optionB, basic_optionC, basic_optionD, basic_correct, basic_used;
 var pro_question, pro_optionA, pro_optionB, pro_optionC, pro_optionD, pro_correct, pro_used;
 var questionIsDone;
+function update()
+{
+    updateVariables();
+    document.getElementById("frame").style.width = frameWidth+"px";
+    document.getElementById("frame").style.minHeight = minFrameHeight+"px";
+    setElementStyle("back", backWidth, backHeight, backX, backY, 1);
+    setElementStyle("questionNum", questionNumWidth, questionNumHeight, questionNumX, questionNumY, 1);
+    setElementStyle("questionBox", questionWidth, questionHeight, questionX, questionY, 1);
+    setElementStyle("questionBackground", questionWidth, questionHeight, 0, 0, 2);
+    setElementStyle("questionText", questionTextWidth, questionHeight, 0, 0, 3);
+    setElementStyle("optionA", optionWidth, optionHeight, optionX, optionA_Y, 1);
+    setElementStyle("optionA_Background", optionWidth, optionHeight, 0, 0, 2);
+    setElementStyle("optionA_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setElementStyle("optionB", optionWidth, optionHeight, optionX, optionB_Y, 1);
+    setElementStyle("optionB_Background", optionWidth, optionHeight, 0, 0, 2);
+    setElementStyle("optionB_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setElementStyle("optionC", optionWidth, optionHeight, optionX, optionC_Y, 1);
+    setElementStyle("optionC_Background", optionWidth, optionHeight, 0, 0, 2);
+    setElementStyle("optionC_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setElementStyle("optionD", optionWidth, optionHeight, optionX, optionD_Y, 1);
+    setElementStyle("optionD_Background", optionWidth, optionHeight, 0, 0, 2);
+    setElementStyle("optionD_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    if(preAvailable)
+        setElementStyle("pre", arrowWidth, arrowHeight, preX, arrowY, 1);
+    else
+        setElementStyle("pre", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, preX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
+    if(nextAvailable)
+        setElementStyle("next", arrowWidth, arrowHeight, nextX, arrowY, 1);
+    else
+        setElementStyle("next", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, nextX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);
+    setElementStyle("exitConfirm", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmX, exitConfirmY, 2);
+    setElementStyle("exitConfirmBackground", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, 0, 0, 3);
+    if(exitConfirmYesBtnMouseOn)
+        setElementStyle("exitConfirmYes", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmYesX, exitConfirmYesNoY, 4);
+    else
+        setElementStyle("exitConfirmYes", exitConfirmYesNoWidth+exitConfirmEnlarge, exitConfirmYesNoHeight+exitConfirmEnlarge, exitConfirmYesX-(exitConfirmEnlarge/2), exitConfirmYesNoY-(exitConfirmEnlarge/2), 4);
+    if(exitConfirmNoBtnMouseOn)
+        setElementStyle("exitConfirmNo", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmNoX, exitConfirmYesNoY, 4);
+    else
+        setElementStyle("exitConfirmNo", exitConfirmYesNoWidth+exitConfirmEnlarge, exitConfirmYesNoHeight+exitConfirmEnlarge, exitConfirmNoX-(exitConfirmEnlarge/2), exitConfirmYesNoY-(exitConfirmEnlarge/2), 4);
+    if(exitConfirmCancelBtnMouseOn)
+        setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
+    else
+        setElementStyle("exitConfirmCancel", (exitConfirmCancelRadis*2)+exitConfirmEnlarge, (exitConfirmCancelRadis*2)+exitConfirmEnlarge, exitConfirmCancelX-(exitConfirmEnlarge/2), exitConfirmCancelY-(exitConfirmEnlarge/2), 4);
+
+
+}
+function updateVariables()
+{
+    //general
+    unit = ((screen.width/1920)+(screen.width%1920));
+    frameWidth = screen.width*deviation;
+    frameHeight = screen.height*deviation;
+    minFrameWidth = (unit*1890);
+    minFrameHeight = (unit*928);
+    //exitConfirm
+    exitConfirmBackgroundWidth = (unit*650);
+    exitConfirmBackgroundHeight = (unit*250);
+    exitConfirmYesNoWidth = (unit*175);
+    exitConfirmYesNoHeight = (unit*75);
+    exitConfirmCancelRadis = (unit*25);
+    exitConfirmEnlarge = (unit*10);
+    exitConfirmX = (frameWidth/2-(exitConfirmBackgroundWidth/2));
+    exitConfirmY = (minFrameHeight/2-(exitConfirmBackgroundHeight/2));
+    exitConfirmYesNoY = (exitConfirmBackgroundHeight*3/4)-(exitConfirmYesNoHeight/2);
+    exitConfirmYesX = (exitConfirmBackgroundWidth/2)-(exitConfirmBackgroundWidth-(2*exitConfirmYesNoWidth))/6-exitConfirmYesNoWidth;
+    exitConfirmNoX = (exitConfirmBackgroundWidth/2)+(exitConfirmBackgroundWidth-(2*exitConfirmYesNoWidth))/6;
+    exitConfirmCancelX = exitConfirmBackgroundWidth-(exitConfirmCancelRadis*2)-(unit*12);
+    exitConfirmCancelY = (unit*5);
+    //back
+    backWidth = (unit*120);
+    backHeight = (unit*60);
+    backX = (unit*10);
+    backY = (unit*10);
+    //questionNum
+    questionNumWidth = (unit*130);
+    questionNumHeight = (unit*80);
+    questionNumX = frameWidth-questionNumWidth-(unit*25);
+    questionNumY = (unit*30);
+    //question
+    questionWidth = (unit*1525);
+    questionTextWidth = questionWidth-(unit*40);//Determine By TestPage.css
+    questionHeight = (unit*400);
+    questionX = (frameWidth/2)-(questionWidth/2);
+    questionY = (unit*30);
+    //option
+    optionWidth = questionWidth;
+    optionHeight = (unit*100);
+    optionTextWidth = optionWidth-(unit*30);//Determine By TestPage.css
+    optionTextHeight = (unit*20);//Determine By TestPage.css
+    optionX = (frameWidth/2)-(optionWidth/2);
+    optionA_Y = questionY+questionHeight+(unit*30);
+    optionB_Y = optionA_Y+optionHeight+(unit*10);
+    optionC_Y = optionB_Y+optionHeight+(unit*10);
+    optionD_Y = optionC_Y+optionHeight+(unit*10);
+    //arrow
+    arrowWidth = (unit*100);
+    arrowHeight = (unit*100);
+    arrowY = optionB_Y+(optionHeight/2);
+    preX = ((frameWidth-questionWidth)/4)-(arrowWidth/2);
+    nextX = (frameWidth/2)+(questionWidth/2)+((frameWidth-questionWidth)/4)-(arrowWidth/2);
+    arrowEnlarge = (unit*10);
+}
 function setVariables()
 {
 	testType = localStorage.getItem("grotion_droneTest_testType");
@@ -61,6 +165,9 @@ function setVariables()
     nextAvailable = false;
     preAvailable = false;
     optionAvailable = true;
+    exitConfirmYesBtnMouseOn = false;
+    exitConfirmNoBtnMouseOn = false;
+    exitConfirmCancelBtnMouseOn = false;
     //general
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
@@ -175,7 +282,7 @@ function setElements()
 {
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
-    myFrame.style.width = minFrameWidth+"px";
+    myFrame.style.width = frameWidth+"px";
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Back
@@ -296,6 +403,7 @@ function btnMouseClick(event)
             if(isDone)
                 document.location.href = "ScorePage.html";
             else
+                setIcon("back", "resources/images/TestPage_TestBackBtn.png");
                 setExitConfirmVisible(true);
             break;
         case "pre":
@@ -352,12 +460,15 @@ function btnMouseOver(event)
         case "optionD_Text": case "optionD_Background":
             break;
         case "exitConfirmYes":
+            exitConfirmYesBtnMouseOn = true;
             setElementStyle("exitConfirmYes", exitConfirmYesNoWidth+exitConfirmEnlarge, exitConfirmYesNoHeight+exitConfirmEnlarge, exitConfirmYesX-(exitConfirmEnlarge/2), exitConfirmYesNoY-(exitConfirmEnlarge/2), 4);
             break;
         case "exitConfirmNo":
+            exitConfirmNoBtnMouseOn = true;
             setElementStyle("exitConfirmNo", exitConfirmYesNoWidth+exitConfirmEnlarge, exitConfirmYesNoHeight+exitConfirmEnlarge, exitConfirmNoX-(exitConfirmEnlarge/2), exitConfirmYesNoY-(exitConfirmEnlarge/2), 4);
             break;
         case "exitConfirmCancel":
+            exitConfirmCancelBtnMouseOn = true;
             setElementStyle("exitConfirmCancel", (exitConfirmCancelRadis*2)+exitConfirmEnlarge, (exitConfirmCancelRadis*2)+exitConfirmEnlarge, exitConfirmCancelX-(exitConfirmEnlarge/2), exitConfirmCancelY-(exitConfirmEnlarge/2), 4);
             break;
         default:
@@ -387,12 +498,15 @@ function btnMouseOut(event)
         case "optionD_Text": case "optionD_Background":
             break;
         case "exitConfirmYes":
+            exitConfirmYesBtnMouseOn = false;
             setElementStyle("exitConfirmYes", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmYesX, exitConfirmYesNoY, 4);
             break;
         case "exitConfirmNo":
+            exitConfirmNoBtnMouseOn = false;
             setElementStyle("exitConfirmNo", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmNoX, exitConfirmYesNoY, 4);
             break;
         case "exitConfirmCancel":
+            exitConfirmCancelBtnMouseOn = false;
             setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
             break;
         default:
@@ -999,5 +1113,6 @@ function start()
     setVariables();
     setElements();
     getExamData(jsonUrl);
+    i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);

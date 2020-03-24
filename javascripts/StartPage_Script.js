@@ -2,11 +2,49 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var deviation, frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
+var i, deviation, frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var animationWidth, animationHeight, animationX, animationY;
 var skipWidth, skipHeight, skipX, skipY;
 var isGroTion, isSkipVisible, pauseTime;
 var timeout;
+function update()
+{
+    updateVariables();
+    document.getElementById("frame").style.width = frameWidth+"px";
+    document.getElementById("frame").style.minHeight = minFrameHeight+"px";
+    if(isGroTion)
+    {
+        animationWidth = frameWidth;
+        animationHeight = minFrameHeight;
+        setElementStyle("ani", animationWidth, animationHeight, animationX, animationY, 2);
+    }
+    else
+    {
+        animationWidth = (unit*600);
+        animationHeight = (unit*500);
+        setElementStyle("ani", animationWidth, animationHeight, animationX, animationY, 2);
+    }
+    setElementStyle("skip", skipWidth, skipHeight, skipX, skipY, 1);
+}
+function updateVariables()
+{
+    //general
+    unit = ((screen.width/1920)+(screen.width%1920));
+    frameWidth = screen.width*deviation;
+    frameHeight = screen.height*deviation;
+    minFrameWidth = (unit*1890);
+    minFrameHeight = (unit*928);
+    //animation
+    animationWidth = (unit*600);
+    animationHeight = (unit*500);
+    animationX = (frameWidth/2)-(animationWidth/2);
+    animationY = (minFrameHeight/2)-(animationHeight/2);
+    //skip
+    skipWidth = (unit*150);
+    skipHeight = (unit*80);
+    skipX = 0;
+    skipY = 0;
+}
 function setVariables()
 {
     //variables
@@ -77,7 +115,7 @@ function setElements()
 {
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
-    myFrame.style.width = minFrameWidth+"px";
+    myFrame.style.width = frameWidth+"px";
     myFrame.style.minHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Animation
@@ -190,6 +228,7 @@ function start()
 {
     setVariables();
     setElements();
+    i = setInterval("update()", 1);
     timeout = setTimeout(function(){document.location.href = "HomePage.html";}, pauseTime);
 }
 window.addEventListener("load",start,false);
