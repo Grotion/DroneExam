@@ -41,7 +41,7 @@ function setVariables()
     //Variables
     deviation = 0.99;
     space = "&nbsp;&nbsp;&nbsp;"
-    instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-03-25<br><br><footer>&copy; Copyright 2020 GROTION</footer>";
+    instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-04-01<br><br><footer>&copy; Copyright 2020 GROTION</footer>";
     //General
     unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
