@@ -25,7 +25,7 @@ function update()
 function updateVariables()
 {
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -43,7 +43,7 @@ function setVariables()
     space = "&nbsp;&nbsp;&nbsp;"
     instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-03-25<br><br><footer>&copy; Copyright 2020 GROTION</footer>";
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -211,7 +211,7 @@ function start()
 {
     setVariables();
     setElements();
-    printVariables();
+    //printVariables();
     updateTimes=0;
     i = setInterval("update()", 1);
 }

@@ -21,7 +21,7 @@ function update()
 function updateVariables()
 {
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -32,7 +32,7 @@ function setVariables()
     //Variables
     deviation = 0.99;
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -63,7 +63,7 @@ function start()
 {
     setVariables();
     setElements();
-    printVariables();
+    //printVariables();
     updateTimes=0;
     i = setInterval("update()", 1);
     document.location.href = "StartPage.html";

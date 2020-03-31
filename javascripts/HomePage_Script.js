@@ -39,7 +39,7 @@ function update()
 function updateVariables()
 {
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -67,12 +67,12 @@ function setVariables()
     proBtnMouseOn = false;
     instructionBtnMouseOn = false;
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    console.log("Version: 1.0");
+    console.log("Version: 1.1");
     console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
     console.log("Unit: "+unit+"px");
     //Logo
@@ -359,11 +359,11 @@ function setExitConfirmVisible(isVisible)
 function start()
 {
     localStorage.clear();
-    console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
-    console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
+    //console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
+    //console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
     setVariables();
     setElements();
-    printVariables();
+    //printVariables();
     updateTimes=0;
     i = setInterval("update()", 1);
     localStorage.setItem("grotion_droneTest_testType", testType);

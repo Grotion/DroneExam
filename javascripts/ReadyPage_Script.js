@@ -39,7 +39,7 @@ function update()
 function updateVariables()
 {
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -80,7 +80,7 @@ function setVariables()
     backBtnMouseOn = false;
     startBtnMouseOn = false;
     //General
-    unit = ((screen.width/1920)+(screen.width%1920));
+    unit = screen.width/1920.0;
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
@@ -317,7 +317,7 @@ function start()
 {
     setVariables();
     setElements();
-    printVariables();
+    //printVariables();
     updateTimes=0;
     i = setInterval("update()", 1);
 }
