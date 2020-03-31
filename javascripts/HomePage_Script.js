@@ -359,8 +359,8 @@ function setExitConfirmVisible(isVisible)
 function start()
 {
     localStorage.clear();
-    //console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
-    //console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
+    console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
+    console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
     setVariables();
     setElements();
     printVariables();
