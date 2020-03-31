@@ -2,7 +2,7 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i, deviation, space, instructionText;
+var i, updateTimes, deviation, space, instructionText;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var backWidth, backHeight, backX, backY;
 function update()
@@ -12,10 +12,19 @@ function update()
     document.getElementById("frame").style.minHeight = minFrameHeight+"px";
     setElementStyle("instruction", frameWidth, minFrameHeight, 0, 0, 1);
     setElementStyle("back", backWidth, backHeight, backX, backY, 1);
+
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==100)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -29,11 +38,11 @@ function updateVariables()
 }
 function setVariables()
 {
-    //variables
+    //Variables
     deviation = 0.99;
     space = "&nbsp;&nbsp;&nbsp;"
     instructionText = "Report Anything: grotion0720@gmail.com<br>Thank you!<br>Last Update: 2020-03-25<br><br><footer>&copy; Copyright 2020 GROTION</footer>";
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -45,6 +54,23 @@ function setVariables()
     backX = frameWidth-backWidth-(unit*15);
     backY = (unit*-10);
 }
+function printVariables()
+{
+    //Variables
+    console.log("Variables");
+    console.log("\tdeviation: " + deviation);
+    console.log("\tspace: " + space);
+    console.log("\tinstructionText: " + instructionText);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //back
+    console.log("back");
+    console.log("\tbackWidth: " + backWidth + " px, backHeight: " + backHeight + " px");
+    console.log("\tbackX: " + backX + " px, backY: " + backY + " px");
+}
 function setElementStyle(id, w, h, left, top, zIndex)
 {
     if(document.getElementById(id)!=null)
@@ -52,7 +78,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -97,7 +125,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Instruction
     createDivElement("frame", "instruction");
@@ -181,6 +211,8 @@ function start()
 {
     setVariables();
     setElements();
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);

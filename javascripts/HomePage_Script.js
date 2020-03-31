@@ -3,13 +3,11 @@
  * © 2020 Grotion All Rights Reserved
  */
 // JavaScript source code
-var i,deviation, testType;
+var i, updateTimes, updateTimes,deviation, testType;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var logoWidth, logoHeight, logoX, logoY;
 var btnWidth, btnHeight, btnX, btn1Y, btn2Y, btn3Y, btn4Y, btnEnlarge;
 var basicBtnMouseOn, proBtnMouseOn, instructionBtnMouseOn;
-//var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
-//var exitConfirmX, exitConfirmY, exitConfirmYesNoY, exitConfirmYesX, exitConfirmNoX, exitConfirmCancelX, exitConfirmCancelY;
 function update()
 {
     updateVariables();
@@ -28,18 +26,25 @@ function update()
         setElementStyle("instruction", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn3Y-(btnEnlarge/2), 1);
     else
         setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
+
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==200)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    console.log("Update! Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
-    console.log("Update! Unit: "+unit+"px");
-    //logo
+    //Logo
     logoWidth = (unit*600);
     logoHeight = (unit*150);
     logoX = (frameWidth/2-(logoWidth/2));
@@ -48,7 +53,6 @@ function updateVariables()
     btnWidth = (unit*470);
     btnHeight = (unit*120);
     btnX = (frameWidth/2-(btnWidth/2));
-    //Three Buttons
     btn2Y = (minFrameHeight/2-(btnHeight/2));
     btn1Y = btn2Y-btnHeight-(unit*60);
     btn3Y = btn2Y+btnHeight+(unit*60);
@@ -62,15 +66,16 @@ function setVariables()
     basicBtnMouseOn = false;
     proBtnMouseOn = false;
     instructionBtnMouseOn = false;
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
+    console.log("Version: 1.0");
     console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
     console.log("Unit: "+unit+"px");
-    //logo
+    //Logo
     logoWidth = (unit*600);
     logoHeight = (unit*150);
     logoX = (frameWidth/2-(logoWidth/2));
@@ -79,32 +84,34 @@ function setVariables()
     btnWidth = (unit*470);
     btnHeight = (unit*120);
     btnX = (frameWidth/2-(btnWidth/2));
-    //Four Buttons
-    /*btn1Y = logoY+logoHeight+(unit*60);
-    btn2Y = btn1Y+(btnHeight*4/3);
-    btn3Y = btn2Y+(btnHeight*4/3);
-    btn4Y = btn3Y+(btnHeight*4/3);*/
-    //Three Buttons
     btn2Y = (minFrameHeight/2-(btnHeight/2));
     btn1Y = btn2Y-btnHeight-(unit*60);
     btn3Y = btn2Y+btnHeight+(unit*60);
     btnEnlarge = (unit*10);
-    /*
-    //exitConfirm
-    exitConfirmBackgroundWidth = (unit*650);
-    exitConfirmBackgroundHeight = (unit*250);
-    exitConfirmYesNoWidth = (unit*175);
-    exitConfirmYesNoHeight = (unit*75);
-    exitConfirmCancelRadis = (unit*25);
-    exitConfirmEnlarge = (unit*10);
-    exitConfirmX = (frameWidth/2-(exitConfirmBackgroundWidth/2));
-    exitConfirmY = (minFrameHeight/2-(exitConfirmBackgroundHeight/2));
-    exitConfirmYesNoY = (exitConfirmBackgroundHeight*3/4)-(exitConfirmYesNoHeight/2);
-    exitConfirmYesX = (exitConfirmBackgroundWidth/2)-(exitConfirmBackgroundWidth-(2*exitConfirmYesNoWidth))/6-exitConfirmYesNoWidth;
-    exitConfirmNoX = (exitConfirmBackgroundWidth/2)+(exitConfirmBackgroundWidth-(2*exitConfirmYesNoWidth))/6;
-    exitConfirmCancelX = exitConfirmBackgroundWidth-(exitConfirmCancelRadis*2)-(unit*12);
-    exitConfirmCancelY = (unit*5);
-    */
+}
+function printVariables()
+{
+    //Variables
+    console.log("Variables");
+    console.log("\tdeviation: " + deviation);
+    console.log("\ttestType: " + testType);
+    console.log("\tbasicBtnMouseOn: " + basicBtnMouseOn);
+    console.log("\tproBtnMouseOn: " + proBtnMouseOn);
+    console.log("\tinstructionBtnMouseOn: " + instructionBtnMouseOn);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //Logo
+    console.log("Logo");
+    console.log("\tlogoWidth: " + logoWidth + " px, logoHeight: " + logoHeight + " px");
+    console.log("\tlogoX: " + logoX + " px, logoY: " + logoY + " px");
+    //Buttons
+    console.log("Buttons");
+    console.log("\tbtnWidth: " + btnWidth + " px, btnHeight: " + btnHeight + " px");
+    console.log("\tbtnX: " + btnX + " px, btn1Y: " + btn1Y + " px, btn2Y: " + btn2Y + " px, btn3Y: " + btn3Y + " px");
+    console.log("\tbtnEnlarge: " + btnEnlarge + " px");
 }
 function setElementStyle(id, w, h, left, top, zIndex)
 {
@@ -113,7 +120,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -159,7 +168,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Logo
     createInputImgElement("frame", "logo", "resources/images/HomePage_Title.png", "logo");
@@ -173,28 +184,7 @@ function setElements()
     //Instruction
     createInputImgElement("frame", "instruction", "resources/images/HomePage_InstructionBtn.png", "instruction");
     setElementStyle("instruction", btnWidth, btnHeight, btnX, btn3Y, 1);
-    /*
-    //Exit
-    createInputImgElement("frame", "exit", "resources/images/HomePage_ExitBtn.png", "exit");
-    setElementStyle("exit", btnWidth, btnHeight, btnX, btn4Y, 1);
-    //ExitConfirm
-    createDivElement("frame", "exitConfirm");
-    setElementStyle("exitConfirm", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmX, exitConfirmY, 2);
-    //ExitConfirmBackground
-    createImgElement("exitConfirm", "exitConfirmBackground", "resources/images/HomePage_ExitConfirm.png", "exitConfirmBackground");
-    setElementStyle("exitConfirmBackground", exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, 0, 0, 3);
-    //ExitConfirmYes
-    createImgElement("exitConfirm", "exitConfirmYes", "resources/images/HomePage_ExitConfirmYes.png", "exitConfirmYes");
-    setElementStyle("exitConfirmYes", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmYesX, exitConfirmYesNoY, 4);
-    //ExitConfirmNo
-    createImgElement("exitConfirm", "exitConfirmNo", "resources/images/HomePage_ExitConfirmNo.png", "exitConfirmNo");
-    setElementStyle("exitConfirmNo", exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmNoX, exitConfirmYesNoY, 4);
-    //ExitConfirmCancel
-    createImgElement("exitConfirm", "exitConfirmCancel", "resources/images/HomePage_ExitConfirmCancel.png", "exitConfirmCancel");
-    setElementStyle("exitConfirmCancel", exitConfirmCancelRadis*2, exitConfirmCancelRadis*2, exitConfirmCancelX, exitConfirmCancelY, 4);
-    */
-    //ButtonEvent
-    //setExitConfirmVisible(false);
+
     setBtnEvent("logo", true);
     setBtnEvent("basic", true);
     setBtnEvent("pro", true);
@@ -369,10 +359,12 @@ function setExitConfirmVisible(isVisible)
 function start()
 {
     localStorage.clear();
-    console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
-    console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
+    //console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
+    //console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");
     setVariables();
     setElements();
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
     localStorage.setItem("grotion_droneTest_testType", testType);
 }

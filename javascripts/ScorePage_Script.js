@@ -2,7 +2,7 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i, deviation, space, score;
+var i, updateTimes, deviation, space, score;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var scoreBoxWidth, scoreBoxHeight, scoreBoxX, scoreBoxY;
 var passWidth, passHeight, passX, passY;
@@ -25,10 +25,19 @@ function update()
         setElementStyle("home", btnWidth, btnHeight, btnX, btn2Y, 1);
     else
         setElementStyle("home", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btnX-(btnEnlarge/2), btn2Y-(btnEnlarge/2), 1);
+
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==100)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -66,12 +75,12 @@ function setVariables()
         alert("You Haven't Done Exam Yet! Transfer To Home Page!");
         document.location.href = "HomePage.html";
     }
-    //variables
+    //Variables
     deviation = 0.99;
     space = "&nbsp;"
     reviewBtnMouseOn = false;
     homeBtnMouseOn = false;
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -100,6 +109,38 @@ function setVariables()
     btn2Y = btn1Y+btnHeight+(unit*30);
     btnEnlarge = (unit*10);
 }
+function printVariables()
+{
+    //Variables
+    console.log("#Variables");
+    console.log("\tdeviation: " + deviation);
+    console.log("\tspace: " + space);
+    console.log("\treviewBtnMouseOn: " + reviewBtnMouseOn);
+    console.log("\thomeBtnMouseOn: " + homeBtnMouseOn);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //Score
+    console.log("Score");
+    console.log("\tscoreBoxWidth: " + scoreBoxWidth + " px, scoreBoxHeight: " + scoreBoxHeight + " px");
+    console.log("\tscoreBoxX: " + scoreBoxX + " px, scoreBoxY: " + scoreBoxY + " px");
+    //Pass
+    console.log("Pass");
+    console.log("\tpassWidth: " + passWidth + " px, passHeight: " + passHeight + " px");
+    console.log("\tpassX: " + passX + " px, passY: " + passY + " px");
+    //Animation
+    console.log("Animation");
+    console.log("\taniWidth: " + aniWidth + " px, aniHeight: " + aniHeight + " px");
+    console.log("\taniHeight: ");
+    console.log("\taniX: " + aniX + " px, aniY: " + aniY + " px");
+    //Buttons
+    console.log("Buttons");
+    console.log("\tbtnWidth: " + btnWidth + " px, btnHeight: " + btnHeight + " px");
+    console.log("\tbtnX: " + btnX + " px, btn1Y: " + btn1Y + " px, btn2Y: " + btn2Y + " px");
+    console.log("\tbtnEnlarge: " + btnEnlarge + " px");
+}
 function setElementStyle(id, w, h, left, top, zIndex)
 {
     if(document.getElementById(id)!=null)
@@ -107,7 +148,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -154,7 +197,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Score
     createPElement("frame", "scoreBox", "本次測驗您獲得 "+score+" 分");
@@ -281,6 +326,8 @@ function start()
 {
     setVariables();
     setElements();
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);

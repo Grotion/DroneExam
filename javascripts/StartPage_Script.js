@@ -2,7 +2,7 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i, deviation, frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
+var i, updateTimes, deviation, frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var animationWidth, animationHeight, animationX, animationY;
 var skipWidth, skipHeight, skipX, skipY;
 var isGroTion, isSkipVisible, pauseTime;
@@ -25,21 +25,30 @@ function update()
         setElementStyle("ani", animationWidth, animationHeight, animationX, animationY, 2);
     }
     setElementStyle("skip", skipWidth, skipHeight, skipX, skipY, 1);
+
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==100)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    //animation
+    //Animation
     animationWidth = (unit*600);
     animationHeight = (unit*500);
     animationX = (frameWidth/2)-(animationWidth/2);
     animationY = (minFrameHeight/2)-(animationHeight/2);
-    //skip
+    //Skip
     skipWidth = (unit*150);
     skipHeight = (unit*80);
     skipX = 0;
@@ -47,27 +56,49 @@ function updateVariables()
 }
 function setVariables()
 {
-    //variables
+    //Variables
     isGroTion = false;
     isSkipVisible = false;
     deviation = 0.99;
     pauseTime = 3000;
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    //animation
+    //Animation
     animationWidth = (unit*600);
     animationHeight = (unit*500);
     animationX = (frameWidth/2)-(animationWidth/2);
     animationY = (minFrameHeight/2)-(animationHeight/2);
-    //skip
+    //Skip
     skipWidth = (unit*150);
     skipHeight = (unit*80);
     skipX = 0;
     skipY = 0;
+}
+function printVariables()
+{
+    //Variables
+    console.log("Variables");
+    console.log("\tisGroTion: " + isGroTion);
+    console.log("\tisSkipVisible: " + isSkipVisible);
+    console.log("\tdeviation: " + deviation);
+    console.log("\tpauseTime: " + pauseTime);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //Animation
+    console.log("Animation");
+    console.log("\tanimationWidth: " + animationWidth + " px, animationHeight: " + animationHeight + " px");
+    console.log("\tanimationX: " + animationX + " px, animationY: " + animationY + " px");
+    //Skip
+    console.log("Skip");
+    console.log("\tskipWidth: " + skipWidth + " px, skipHeight: " + skipHeight + " px");
+    console.log("\tskipX: " + skipX + " px, skipY: " + skipY + " px");
 }
 function setElementStyle(id, w, h, left, top, zIndex)
 {
@@ -76,7 +107,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -116,7 +149,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Animation
     createImgElement("frame", "ani", "", "ani");
@@ -228,6 +263,8 @@ function start()
 {
     setVariables();
     setElements();
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
     timeout = setTimeout(function(){document.location.href = "HomePage.html";}, pauseTime);
 }

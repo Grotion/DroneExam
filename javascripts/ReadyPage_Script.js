@@ -2,7 +2,7 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i, deviation, testType, space, basicInstruction, proInstruction;
+var i, updateTimes, deviation, testType, space, basicInstruction, proInstruction;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var titleWidth, titleHeight, titleX, titleY;
 var instructionWidth, instructionHeight, instructionX, instructionY;
@@ -26,16 +26,25 @@ function update()
         setElementStyle("start", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn2X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
     else
         setElementStyle("start", btnWidth, btnHeight, btn2X, btnY, 1);
+
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==100)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    //title
+    //Title
     titleWidth = (unit*700);
     titleHeight = (unit*150);
     titleX = (frameWidth/2-(titleWidth/2));
@@ -63,20 +72,20 @@ function setVariables()
         alert("Test Type NOT Found! Transfer To Home Page!");
         document.location.href = "HomePage.html";
     }
-    //variables
+    //Variables
     deviation = 0.99;
     space = "&nbsp;&nbsp;&nbsp;"
     basicInstruction = "1. 學科測驗成績最高分為100分，及格標準為80分，測驗考科計4 項如下：<br>"+space+"(1) 民用航空法及相關法規。<br>"+space+"(2) 基礎飛行原理。<br>"+space+"(3) 氣象。<br>"+space+"(4) 緊急處置與飛行決策。<br>"+"2. 普通操作證學科測驗考題分配及測驗時間：共計20題，測驗時間30分鐘<br>"+"3. 題目均為4 選1 之單選題。";
     proInstruction = "1. 學科測驗成績最高分為100分，及格標準為80分，測驗考科計4 項如下：<br>"+space+"(1) 民用航空法及相關法規。<br>"+space+"(2) 基礎飛行原理。<br>"+space+"(3) 氣象。<br>"+space+"(4) 緊急處置與飛行決策。<br>"+"2. 普通操作證學科測驗考題分配及測驗時間：共計40題，測驗時間60分鐘<br>"+"3. 題目均為4 選1 之單選題。";
     backBtnMouseOn = false;
     startBtnMouseOn = false;
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    //title
+    //Title
     titleWidth = (unit*700);
     titleHeight = (unit*150);
     titleX = (frameWidth/2-(titleWidth/2));
@@ -96,6 +105,36 @@ function setVariables()
     btnY = minFrameHeight-btnHeight-(unit*50);
     btnEnlarge = (unit*10);
 }
+function printVariables()
+{
+    //Variables
+    console.log("Variables");
+    console.log("\tdeviation: " + deviation);
+    console.log("\tspace: " + space);
+    console.log("\tbasicInstruction: " + basicInstruction);
+    console.log("\tbackBtnMouseOn: " + backBtnMouseOn);
+    console.log("\tstartBtnMouseOn: " + startBtnMouseOn);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //Title
+    console.log("Title");
+    console.log("\ttitleWidth: " + titleWidth + " px, titleHeight: " + titleHeight + " px");
+    console.log("\ttitleX: " + titleX + " px, titleY: " + titleY + " px");
+    //instructionBackground
+    console.log("instructionBackground");
+    console.log("\tinstructionWidth: " + instructionWidth + " px, instructionHeight: " + instructionHeight + " px");
+    console.log("\tinstructionTitleHeight: " + instructionTitleHeight + " px");
+    console.log("\tinstructionTextHeight: " + instructionTextHeight + " px");
+    console.log("\tinstructionX: " + instructionX + " px, instructionY: " + instructionY + " px");
+    //Buttons
+    console.log("Buttons");
+    console.log("\tbtnWidth: " + btnWidth + " px, btnHeight: " + btnHeight + " px");
+    console.log("\tbtn1X: " + btn1X + " px, btn2X: " + btn2X + " px, btnY: " + btnY + " px");
+    console.log("\tbtnEnlarge: " + btnEnlarge + " px");
+}
 function setElementStyle(id, w, h, left, top, zIndex)
 {
     if(document.getElementById(id)!=null)
@@ -103,7 +142,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -156,7 +197,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Title
     createImgElement("frame", "title", "", "title");
@@ -274,6 +317,8 @@ function start()
 {
     setVariables();
     setElements();
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);

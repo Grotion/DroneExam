@@ -2,7 +2,7 @@
  * @author Grotion <grotion0720@gmail.com>
  * © 2020 Grotion All Rights Reserved
  */
-var i, deviation, space, testType, score, isDone, isDoneStr;
+var i, updateTimes, deviation, space, testType, score, isDone, isDoneStr;
 var frameWidth, frameHeight, minFrameWidth, minFrameHeight, unit;
 var backWidth, backHeight, backX, backY;
 var exitConfirmBackgroundWidth, exitConfirmBackgroundHeight, exitConfirmYesNoWidth, exitConfirmYesNoHeight, exitConfirmCancelRadis, exitConfirmEnlarge;
@@ -62,11 +62,18 @@ function update()
     else
         setElementStyle("exitConfirmCancel", (exitConfirmCancelRadis*2)+exitConfirmEnlarge, (exitConfirmCancelRadis*2)+exitConfirmEnlarge, exitConfirmCancelX-(exitConfirmEnlarge/2), exitConfirmCancelY-(exitConfirmEnlarge/2), 4);
 
-
+    updateTimes++;
+    //console.log("updateTimes="+updateTimes);
+    if(updateTimes==100)
+    {
+        //console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
+        //console.log("Unit: "+unit+"px");
+        updateTimes=0;
+    }
 }
 function updateVariables()
 {
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -157,7 +164,7 @@ function setVariables()
     pro_correct = [];
     pro_used = [];
     questionIsDone = [];
-    //variables
+    //Variables
     deviation = 0.99;
     space = "&nbsp;"
     doneQuestionCount = 1;
@@ -168,7 +175,7 @@ function setVariables()
     exitConfirmYesBtnMouseOn = false;
     exitConfirmNoBtnMouseOn = false;
     exitConfirmCancelBtnMouseOn = false;
-    //general
+    //General
     unit = ((screen.width/1920)+(screen.width%1920));
     frameWidth = screen.width*deviation;
     frameHeight = screen.height*deviation;
@@ -221,7 +228,89 @@ function setVariables()
     preX = ((frameWidth-questionWidth)/4)-(arrowWidth/2);
     nextX = (frameWidth/2)+(questionWidth/2)+((frameWidth-questionWidth)/4)-(arrowWidth/2);
     arrowEnlarge = (unit*10);
-
+}
+function printVariables()
+{
+    //arrays
+    console.log("Arrays");
+    console.log("\tbasic_question: " + basic_question);
+    console.log(basic_question);
+    console.log("\tbasic_optionA: " + basic_optionA);
+    console.log(basic_optionA);
+    console.log("\tbasic_optionB: " + basic_optionB);
+    console.log(basic_optionB);
+    console.log("\tbasic_optionC: " + basic_optionC);
+    console.log(basic_optionC);
+    console.log("\tbasic_optionD: " + basic_optionD);
+    console.log(basic_optionD);
+    console.log("\tbasic_correct: " + basic_correct);
+    console.log(basic_correct);
+    console.log("\tbasic_used: " + basic_used);
+    console.log(basic_used);
+    console.log("\tpro_question: " + pro_question);
+     console.log(pro_question);
+    console.log("\tpro_optionA: " + pro_optionA);
+    console.log(pro_optionA);
+    console.log("\tpro_optionB: " + pro_optionB);
+    console.log(pro_optionB);
+    console.log("\tpro_optionC: " + pro_optionC);
+    console.log(pro_optionC);
+    console.log("\tpro_optionD: " + pro_optionD);
+    console.log(pro_optionD);
+    console.log("\tpro_correct: " + pro_correct);
+    console.log(pro_correct);
+    console.log("\tpro_used: " + pro_used);
+    console.log(pro_used);
+    console.log("\tquestionIsDone: " + questionIsDone);
+    console.log(questionIsDone);
+    //Variables
+    console.log("Variables");
+    console.log("\tdeviation: " + deviation);
+    console.log("\tspace: " + space);
+    console.log("\tdoneQuestionCount: " + doneQuestionCount);
+    console.log("\tcurrentQuestionCount: " + currentQuestionCount);
+    console.log("\tnextAvailable: " + nextAvailable);
+    console.log("\tpreAvailable: " + preAvailable);
+    console.log("\toptionAvailable: " + optionAvailable);
+    console.log("\texitConfirmYesBtnMouseOn: " + exitConfirmYesBtnMouseOn);
+    console.log("\texitConfirmNoBtnMouseOn: " + exitConfirmNoBtnMouseOn);
+    console.log("\texitConfirmCancelBtnMouseOn: " + exitConfirmCancelBtnMouseOn);
+    //General
+    console.log("General");
+    console.log("\tunit: " + unit + " px");
+    console.log("\tframeWidth: " + frameWidth + " px, frameHeight: " + frameHeight + " px");
+    console.log("\tminFrameWidth: " + minFrameWidth + " px, minFrameHeight: " + minFrameHeight + " px");
+    //exitConfirm
+    console.log("exitConfirm");
+    console.log("\texitConfirmBackgroundWidth: " + exitConfirmBackgroundWidth + " px, exitConfirmBackgroundHeight: " + exitConfirmBackgroundHeight + " px");
+    console.log("\texitConfirmYesNoWidth: " + exitConfirmYesNoWidth + " px, exitConfirmYesNoWidth: " + exitConfirmYesNoWidth + " px");
+    console.log("\texitConfirmCancelRadis: " + exitConfirmCancelRadis + " px");
+    console.log("\texitConfirmEnlarge: " + exitConfirmEnlarge + " px");
+    console.log("\texitConfirmX: " + exitConfirmX + " px, exitConfirmY: " + exitConfirmY + " px");
+    console.log("\texitConfirmYesX: " + exitConfirmYesX + " px, exitConfirmNoX: " + exitConfirmNoX + " px, exitConfirmNoX: " + exitConfirmNoX + " px");
+    console.log("\texitConfirmCancelX: " + exitConfirmCancelX + " px, exitConfirmCancelY: " + exitConfirmCancelY + " px");
+    //back
+    console.log("back");
+    console.log("\tbackWidth: " + backWidth + " px, backHeight: " + backHeight + " px");
+    console.log("\tbackX: " + backX + " px, backY: " + backY + " px");
+    //questionNum
+    console.log("questionNum");
+    console.log("\tquestionNumWidth: " + questionNumWidth + " px, questionNumHeight: " + questionNumHeight + " px");
+    console.log("\tquestionNumX: " + questionNumX + " px, questionNumY: " + questionNumY + " px");
+    //question
+    console.log("question");
+    console.log("\tquestionWidth: " + questionWidth + " px, questionHeight: " + questionHeight + " px");
+    console.log("\tquestionX: " + questionX + " px, questionY: " + questionY + " px");
+    //option
+    console.log("option");
+    console.log("\toptionWidth: " + optionWidth + " px, optionHeight: " + optionHeight + " px");
+    console.log("\toptionTextWidth: " + optionTextWidth + " px, optionTextHeight: " + optionTextHeight + " px");
+    console.log("\toptionX: " + optionX + " px, optionA_Y: " + optionA_Y + " px, optionB_Y: " + optionB_Y + " px, optionC_Y: " + optionC_Y + " px, optionD_Y: " + optionD_Y + " px");
+    //arrow
+    console.log("arrow");
+    console.log("\tarrowWidth: " + arrowWidth + " px, arrowHeight: " + arrowHeight + " px");
+    console.log("\tpreX: " + preX + " px, nextX: " + nextX + " px, arrowY: " + arrowY + " px");
+    console.log("\arrowEnlarge: " + arrowEnlarge + " px");
 }
 function setElementStyle(id, w, h, left, top, zIndex)
 {
@@ -230,7 +319,9 @@ function setElementStyle(id, w, h, left, top, zIndex)
         var element = document.getElementById(id);
         element.style.position = "absolute";
         element.style.width = w+"px";
+        element.style.maxWidth = w+"px";
         element.style.height = h+"px";
+        element.style.maxHeight = h+"px";
         element.style.left = left+"px";
         element.style.top = top+"px";
         element.style.zIndex = zIndex;
@@ -283,7 +374,9 @@ function setElements()
     var myFrame = document.getElementById("frame");
     myFrame.style.position = "absolute";
     myFrame.style.width = frameWidth+"px";
-    myFrame.style.minHeight = minFrameHeight+"px";
+    myFrame.style.maxWidth = frameWidth+"px";
+    myFrame.style.height = minFrameHeight+"px";
+    myFrame.style.maxHeight = minFrameHeight+"px";
     myFrame.style.zIndex = "0";
     //Back
     createInputImgElement("frame", "back", "resources/images/TestPage_TestBackBtn.png", "back");
@@ -1113,6 +1206,8 @@ function start()
     setVariables();
     setElements();
     getExamData(jsonUrl);
+    printVariables();
+    updateTimes=0;
     i = setInterval("update()", 1);
 }
 window.addEventListener("load",start,false);
