@@ -11,6 +11,8 @@ function update()
     document.getElementById("frame").style.width = frameWidth+"px";
     document.getElementById("frame").style.minHeight = minFrameHeight+"px";
     setElementStyle("instruction", frameWidth, minFrameHeight, 0, 0, 1);
+    setTextStyle("instructionTitle", (unit*40), (unit*10), (unit*10), (unit*20), (unit*20));
+    setTextStyle("instructionText", (unit*20), (unit*10), 0, (unit*40), (unit*20));
     setElementStyle("back", backWidth, backHeight, backX, backY, 1);
 
     updateTimes++;
@@ -91,6 +93,22 @@ function setElementStyle(id, w, h, left, top, zIndex)
         console.log("ID: "+id+" NOT Found!");
     }
 }
+function setTextStyle(id, fontSize, marginTop, marginBottom, marginLeft, marginRight)
+{
+    if(document.getElementById(id)!=null)
+    {
+        var element = document.getElementById(id);
+        element.style.fontSize = fontSize+"px";
+        element.style.marginTop = marginTop+"px";
+        element.style.marginBottom = marginBottom+"px";
+        element.style.marginLeft = marginLeft+"px";
+        element.style.marginRight = marginRight+"px";
+    }
+    else
+    {
+        console.log("ID: "+id+" NOT Found!");
+    }
+}
 function createInputImgElement(parent, id, src, alt)
 {
     var element = document.createElement("input");
@@ -134,8 +152,10 @@ function setElements()
     setElementStyle("instruction", frameWidth, minFrameHeight, 0, 0, 1);
     //InstructionTitle
     createPElement("instruction", "instructionTitle", "Instructions");
+    setTextStyle("instructionTitle", (unit*40), (unit*10), (unit*10), (unit*20), (unit*20));
     //InstructionText
     createPElement("instruction", "instructionText", instructionText);
+    setTextStyle("instructionText", (unit*20), (unit*10), 0, (unit*40), (unit*20));
     //Back
     createInputImgElement("frame", "back", "resources/images/InstructionPage_Back.png", "back");
    	setElementStyle("back", backWidth, backHeight, backX, backY, 1);

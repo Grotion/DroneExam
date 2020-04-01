@@ -24,21 +24,27 @@ function update()
     document.getElementById("frame").style.minHeight = minFrameHeight+"px";
     setElementStyle("back", backWidth, backHeight, backX, backY, 1);
     setElementStyle("questionNum", questionNumWidth, questionNumHeight, questionNumX, questionNumY, 1);
+    setTextStyle("questionNum", (unit*50), 0, 0, 0, 0);
     setElementStyle("questionBox", questionWidth, questionHeight, questionX, questionY, 1);
     setElementStyle("questionBackground", questionWidth, questionHeight, 0, 0, 2);
     setElementStyle("questionText", questionTextWidth, questionHeight, 0, 0, 3);
+    setTextStyle("questionText", (unit*35), (unit*10), (unit*10), (unit*20), (unit*20));
     setElementStyle("optionA", optionWidth, optionHeight, optionX, optionA_Y, 1);
     setElementStyle("optionA_Background", optionWidth, optionHeight, 0, 0, 2);
     setElementStyle("optionA_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setTextStyle("optionA_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     setElementStyle("optionB", optionWidth, optionHeight, optionX, optionB_Y, 1);
     setElementStyle("optionB_Background", optionWidth, optionHeight, 0, 0, 2);
     setElementStyle("optionB_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setTextStyle("optionB_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     setElementStyle("optionC", optionWidth, optionHeight, optionX, optionC_Y, 1);
     setElementStyle("optionC_Background", optionWidth, optionHeight, 0, 0, 2);
     setElementStyle("optionC_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setTextStyle("optionC_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     setElementStyle("optionD", optionWidth, optionHeight, optionX, optionD_Y, 1);
     setElementStyle("optionD_Background", optionWidth, optionHeight, 0, 0, 2);
     setElementStyle("optionD_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
+    setTextStyle("optionD_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     if(preAvailable)
         setElementStyle("pre", arrowWidth, arrowHeight, preX, arrowY, 1);
     else
@@ -332,6 +338,22 @@ function setElementStyle(id, w, h, left, top, zIndex)
         console.log("ID: "+id+" NOT Found!");
     }
 }
+function setTextStyle(id, fontSize, marginTop, marginBottom, marginLeft, marginRight)
+{
+    if(document.getElementById(id)!=null)
+    {
+        var element = document.getElementById(id);
+        element.style.fontSize = fontSize+"px";
+        element.style.marginTop = marginTop+"px";
+        element.style.marginBottom = marginBottom+"px";
+        element.style.marginLeft = marginLeft+"px";
+        element.style.marginRight = marginRight+"px";
+    }
+    else
+    {
+        console.log("ID: "+id+" NOT Found!");
+    }
+}
 function createInputImgElement(parent, id, src, alt)
 {
     var element = document.createElement("input");
@@ -384,6 +406,7 @@ function setElements()
     //QuestionNum
     createPElement("frame", "questionNum", "");
     setElementStyle("questionNum", questionNumWidth, questionNumHeight, questionNumX, questionNumY, 1);
+    setTextStyle("questionNum", (unit*50), 0, 0, 0, 0);
     //QuestionBox
     createDivElement("frame", "questionBox");
     setElementStyle("questionBox", questionWidth, questionHeight, questionX, questionY, 1);
@@ -393,6 +416,7 @@ function setElements()
     //QuestionText
     createPElement("questionBox", "questionText", "");
     setElementStyle("questionText", questionTextWidth, questionHeight, 0, 0, 3);
+    setTextStyle("questionText", (unit*35), (unit*10), (unit*10), (unit*20), (unit*20));
     //OptionA_Div
     createDivElement("frame", "optionA");
     setElementStyle("optionA", optionWidth, optionHeight, optionX, optionA_Y, 1);
@@ -404,6 +428,7 @@ function setElements()
     createPElement("optionA", "optionA_Text", "A."+space+"");
     setElementStyle("optionA_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
     document.getElementById("optionA_Text").setAttribute("class", "optionText");
+    setTextStyle("optionA_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     //OptionB_Div
     createDivElement("frame", "optionB");
     setElementStyle("optionB", optionWidth, optionHeight, optionX, optionB_Y, 1);
@@ -414,6 +439,7 @@ function setElements()
     createPElement("optionB", "optionB_Text", "B."+space+"");
     setElementStyle("optionB_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
     document.getElementById("optionB_Text").setAttribute("class", "optionText");
+    setTextStyle("optionB_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     //OptionC_Div
     createDivElement("frame", "optionC");
     setElementStyle("optionC", optionWidth, optionHeight, optionX, optionC_Y, 1);
@@ -424,6 +450,7 @@ function setElements()
     createPElement("optionC", "optionC_Text", "C."+space+"");
     setElementStyle("optionC_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
     document.getElementById("optionC_Text").setAttribute("class", "optionText");
+    setTextStyle("optionC_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     //OptionD_Div
     createDivElement("frame", "optionD");
     setElementStyle("optionD", optionWidth, optionHeight, optionX, optionD_Y, 1);
@@ -434,6 +461,7 @@ function setElements()
     createPElement("optionD", "optionD_Text", "D."+space+"");
     setElementStyle("optionD_Text", optionTextWidth, optionTextHeight, 0, 0, 3);
     document.getElementById("optionD_Text").setAttribute("class", "optionText");
+    setTextStyle("optionD_Text", (unit*30), (unit*35), (unit*35), (unit*20), (unit*10));
     //Pre
     createInputImgElement("frame", "pre", "resources/images/TestPage_PreviousBtn_Unavailable.png", "pre");
     setElementStyle("pre", arrowWidth-arrowEnlarge, arrowHeight-arrowEnlarge, preX+(arrowEnlarge/2), arrowY+(arrowEnlarge/2), 1);

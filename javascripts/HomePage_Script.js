@@ -72,7 +72,6 @@ function setVariables()
     frameHeight = screen.height*deviation;
     minFrameWidth = (unit*1890);
     minFrameHeight = (unit*928);
-    console.log("Version: 1.1");
     console.log("Frame Width: " + frameWidth + "px,\tFrame Height: "+ frameHeight + "px");
     console.log("Unit: "+unit+"px");
     //Logo
@@ -358,6 +357,7 @@ function setExitConfirmVisible(isVisible)
 }
 function start()
 {
+    console.log("Version: 1.1(Last Update:2020-04-01 12:33)");
     localStorage.clear();
     //console.log("Screen Width: " + screen.width + "px,\tScreen Height: "+ screen.height + "px");
     //console.log("Inner Width: " + window.innerWidth + "px,\tInner Height: "+ window.innerHeight + "px");

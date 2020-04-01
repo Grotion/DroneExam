@@ -15,7 +15,9 @@ function update()
     document.getElementById("frame").style.width = frameWidth+"px";
     document.getElementById("frame").style.minHeight = minFrameHeight+"px";
     setElementStyle("scoreBox", scoreBoxWidth, scoreBoxHeight, scoreBoxX, scoreBoxY, 1);
+    setTextStyle("scoreBox", (unit*35), 0, 0, 0, 0);
     setElementStyle("pass", passWidth, passHeight, passX, passY, 1);
+    setTextStyle("pass", (unit*50), 0, 0, 0, 0);
     setElementStyle("ani", aniWidth, aniHeight, aniX, aniY, 1);
     if(reviewBtnMouseOn)
         setElementStyle("review", btnWidth, btnHeight, btnX, btn1Y, 1);
@@ -161,6 +163,22 @@ function setElementStyle(id, w, h, left, top, zIndex)
         console.log("ID: "+id+" NOT Found!");
     }
 }
+function setTextStyle(id, fontSize, marginTop, marginBottom, marginLeft, marginRight)
+{
+    if(document.getElementById(id)!=null)
+    {
+        var element = document.getElementById(id);
+        element.style.fontSize = fontSize+"px";
+        element.style.marginTop = marginTop+"px";
+        element.style.marginBottom = marginBottom+"px";
+        element.style.marginLeft = marginLeft+"px";
+        element.style.marginRight = marginRight+"px";
+    }
+    else
+    {
+        console.log("ID: "+id+" NOT Found!");
+    }
+}
 function createInputImgElement(parent, id, src, alt)
 {
     var element = document.createElement("input");
@@ -204,9 +222,13 @@ function setElements()
     //Score
     createPElement("frame", "scoreBox", "本次測驗您獲得 "+score+" 分");
     setElementStyle("scoreBox", scoreBoxWidth, scoreBoxHeight, scoreBoxX, scoreBoxY, 1);
+    document.getElementById("scoreBox").style.fontSize = (unit*35)+"px";
+    setTextStyle("scoreBox", (unit*35), 0, 0, 0, 0);
     //Pass
     createPElement("frame", "pass", "");
     setElementStyle("pass", passWidth, passHeight, passX, passY, 1);
+    document.getElementById("pass").style.fontSize = (unit*50)+"px";
+    setTextStyle("pass", (unit*50), 0, 0, 0, 0);
     //Animation
     createImgElement("frame", "ani", "", "ani");
     if(score>=80)

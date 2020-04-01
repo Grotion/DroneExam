@@ -6,30 +6,28 @@
 #questionNum
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 50px;
+    /*ont-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;*/
     font-weight: bold;
     color: red;
     word-wrap: break-word;
     word-break: normal;
-    text-align: center;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    
-    
+    text-align: center; 
 }
 #questionText
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 35px;
+    /*font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;*/
     font-weight: bold;
     word-wrap: break-word;
     word-break: normal;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
 }
 .optionDiv
 {	
@@ -40,12 +38,12 @@
 .optionText
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 30px;
-    font-weight: bold;
-	word-wrap: break-word;
-    word-break: break-all;
+    /*font-size: 30px;
     margin-top: 35px;
     margin-bottom: 35px;
     margin-left: 20px;
-    margin-right: 10px;
+    margin-right: 10px;*/
+    font-weight: bold;
+	word-wrap: break-word;
+    word-break: break-all;
 }

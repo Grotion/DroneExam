@@ -6,7 +6,7 @@
 #scoreBox
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 35px;
+    /*font-size: 35px;*/
     text-align: center;
     word-wrap: break-word;
     word-break: normal;
@@ -16,7 +16,7 @@
 #pass
 {
     font-family: "標楷體", "Adobe 黑体 Std R", "Times New Roman";
-    font-size: 50px;
+    /*font-size: 50px;*/
     text-align: center;
     word-wrap: break-word;
     word-break: normal;

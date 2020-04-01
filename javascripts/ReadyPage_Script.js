@@ -16,8 +16,10 @@ function update()
     setElementStyle("title", titleWidth, titleHeight, titleX, titleY, 1);
     setElementStyle("instruction", instructionWidth, instructionHeight, instructionX, instructionY, 1);
     setElementStyle("instructionBackground", instructionWidth, instructionHeight, 0, 0, 2);
-    setElementStyle("instructionTitle", instructionWidth, instructionTitleHeight, 0, 0, 2);
-    setElementStyle("instructionText", instructionWidth, instructionTextHeight, 0, instructionTitleHeight, 2);
+    setElementStyle("instructionTitle", instructionWidth, instructionTitleHeight, 0, 0, 3);
+    setTextStyle("instructionTitle", (unit*40), (unit*10), (unit*10), (unit*20), (unit*20));
+    setElementStyle("instructionText", instructionWidth, instructionTextHeight, 0, instructionTitleHeight, 3);
+    setTextStyle("instructionText", (unit*20), (unit*10), 0, (unit*20), (unit*20));
     if(backBtnMouseOn)
         setElementStyle("back", btnWidth+btnEnlarge, btnHeight+btnEnlarge, btn1X-(btnEnlarge/2), btnY-(btnEnlarge/2), 1);
     else
@@ -155,6 +157,22 @@ function setElementStyle(id, w, h, left, top, zIndex)
         console.log("ID: "+id+" NOT Found!");
     }
 }
+function setTextStyle(id, fontSize, marginTop, marginBottom, marginLeft, marginRight)
+{
+    if(document.getElementById(id)!=null)
+    {
+        var element = document.getElementById(id);
+        element.style.fontSize = fontSize+"px";
+        element.style.marginTop = marginTop+"px";
+        element.style.marginBottom = marginBottom+"px";
+        element.style.marginLeft = marginLeft+"px";
+        element.style.marginRight = marginRight+"px";
+    }
+    else
+    {
+        console.log("ID: "+id+" NOT Found!");
+    }
+}
 function createInputImgElement(parent, id, src, alt)
 {
     var element = document.createElement("input");
@@ -216,14 +234,16 @@ function setElements()
     setElementStyle("instructionBackground", instructionWidth, instructionHeight, 0, 0, 2);
     //InstructionTitle
     createPElement("instruction", "instructionTitle", "測驗說明：");
-    setElementStyle("instructionTitle", instructionWidth, instructionTitleHeight, 0, 0, 2);
+    setElementStyle("instructionTitle", instructionWidth, instructionTitleHeight, 0, 0, 3);
+    setTextStyle("instructionTitle", (unit*40), (unit*10), (unit*10), (unit*20), (unit*20));
     //InstructionText
     createPElement("instruction", "instructionText", "");
-    setElementStyle("instructionText", instructionWidth, instructionTextHeight, 0, instructionTitleHeight, 2);
+    setElementStyle("instructionText", instructionWidth, instructionTextHeight, 0, instructionTitleHeight, 3);
     if(testType=="basic")
     	document.getElementById("instructionText").innerHTML = basicInstruction
     else if(testType=="pro")
     	document.getElementById("instructionText").innerHTML = proInstruction
+    setTextStyle("instructionText", (unit*20), (unit*10), 0, (unit*20), (unit*20));
     //Back
     createInputImgElement("frame", "back", "resources/images/ReadyPage_BackBtn.png", "back");
    	setElementStyle("back", btnWidth, btnHeight, btn1X, btnY, 1);
